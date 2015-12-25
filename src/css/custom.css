@@ -1,0 +1,26 @@
+.scrollable-list {
+    overflow-y: auto;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    min-height: 50px;
+}
+
+.customFontStyle{
+    padding:20px;
+}
+.height100{
+    height:100%;
+}
+
+.sticky-buttons {
+    background: none;
+}
+
+.icon-nav .modal-footer .btn+label, .icon-nav .modal-footer label+.btn, .icon-nav .modal-footer label+label, .modal-footer .btn+.btn, .modal-footer .icon-nav .btn+label, .modal-footer .icon-nav label+.btn, .modal-footer .icon-nav label+label {
+     margin-left: 5px;
+     margin-bottom: 10px;
+}
+
+.widget-btn-bar {
+    width: 222px;
+}
