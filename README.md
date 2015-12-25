@@ -1,4 +1,4 @@
-# Risevision Quiz widget
+# Risevision Clock widget
 
 This widget will show the current time and date according to the time and date configured on the operating system it is used on.
 
