@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>{{"title.titleName" | translate}}</title>
+
+    <link rel="stylesheet" href="css/settings.min.css"/>
+
+
+</head>
+
+<body ng-app="risevision.clock" ng-controller="settingsController">
+
+<!-- Main View -->
+<div class="container-fluid" ng-controller="clock">
+    <div class="modal-dialog modal-lg">
+        <!-- MODAL-->
+        <div class="modal-content scrollable-list" style="max-height:calc(120vh - 240px)">
+
+            <!-- Start Modal Header-->
+            <div class="modal-header">
+                <button type="button" class="close">
+                    <i class="fa fa-times half-top"></i>
+                </button>
+                <h2 class="modal-title">{{"settings.heading.label" | translate}}
+                </h2>
+            </div>
+            <!-- End Modal Header-->
+
+            <!-- Start Modal Body-->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="checkbox">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label class="add-bottom">
+                                    <input type="checkbox" checked="checked"
+                                           ng-model="settings.additionalParams.showTime">{{"settings.showTime.label" | translate}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Format-->
+                <div class="form-group">
+                    <position-setting>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="ng-binding ng-scope">{{"settings.TimeFormat.label" | translate}}</label>
+                                <select name="position" class="form-control"
+                                        ng-model="settings.additionalParams.tFormat">
+                                    <option value="h:mm A" class="ng-binding" selected>{{"settings.TimeFormat.12-Hour" | translate}}</option>
+                                    <option value="H:mm" class="ng-binding">{{"settings.TimeFormat.24-Hour" | translate}}</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </position-setting>
+
+                </div>
+
+                <div class="row">
+                    <div class="checkbox">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label class="add-bottom">
+                                    <input type="checkbox" checked="checked"
+                                           ng-model="settings.additionalParams.showDate">{{"settings.ShowDate.label" | translate}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Format-->
+                <div class="form-group">
+                    <position-setting>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="ng-binding ng-scope">{{"settings.DateFormat.label" | translate}}</label></label>
+                                <select name="position" class="form-control"
+                                        ng-model="settings.additionalParams.dFormat">
+                                    <option value="MMMM DD, YYYY" class="ng-binding" selected> {{"settings.DateFormat.MMMMDDYYYY" | translate}}</option>
+                                    <option value="MMM DD YYYY" class="ng-binding">{{"settings.DateFormat.MMMDDYYYY" | translate}} </option>
+                                    <option value="MM/DD/YYYY" class="ng-binding">{{"settings.DateFormat.MMDDYYYY" | translate}} </option>
+                                    <option value="DD/MM/YYYY" class="ng-binding">{{"settings.DateFormat.DDMMYYYY" | translate}} </option>
+                                </select>
+                            </div>
+                        </div>
+                    </position-setting>
+
+                </div>
+
+                <!--Heading Format-->
+                <div class="row">
+                    <div class="col-md-12 half-top">
+                        <label class="control-label">{{"settings.FontStyle.label" | translate}}</label>
+                        <ul class="list-inline font-setting">
+                            <!-- Font Family -->
+                            <li class="pull-left">
+
+                                <font-picker class="dropdown-toggle no-hover-bg"
+                                             default-font="{{settings.additionalParams.FontType.font}}"
+                                             show-custom="false"
+                                             font="settings.additionalParams.FontType"></font-picker>
+
+                            </li>
+
+                            <!-- Font Size -->
+                            <li class="pull-left">
+                                <font-size-picker ng-model="settings.additionalParams.fontSize"
+                                                  class="no-hover-bg"></font-size-picker>
+                            </li>
+
+                            <!-- Alignment -->
+                            <li class="pull-left">
+                                <alignment align="right" ng-model="settings.additionalParams.alignment" id="alignment"></alignment>
+                            </li>
+                            <!-- End Alignment -->
+
+                            <!--Bold Italic Underlined-->
+
+                            <li class="font-setting-button">
+                                <form>
+                                    <font-style bold=settings.additionalParams.FontStyle.bold italic=settings.additionalParams.FontStyle.italic underline=settings.additionalParams.FontStyle.underline ></font-style>
+                                </form>
+
+                            </li>
+
+                            <!--Font Color-->
+                            <li class="pull-left font-setting-button">
+                                <input ng-model="settings.additionalParams.FontColor" type="text"
+                                       class="ng-isolate-scope" style="display: none;">
+
+                                <div class="sp-replacer text-color-picker sp-light"
+                                     color-picker="settings.additionalParams.FontColor">
+                                    <div class="sp-preview">
+                                        <div class="sp-preview-inner">
+                                            <div class="sp-preview-char"
+                                                 style="color:{{settings.additionalParams.FontColor}}">A
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <b class="caret"></b>
+                                </div>
+                            </li>
+
+                            <!--Font Highlight-->
+                            <li class="pull-left font-setting-button">
+                                <input ng-model="settings.additionalParams.HighlightColor" type="highlight" class="ng-isolate-scope"
+                                       style="display: none;">
+
+                                <div class="sp-replacer highlight-color-picker sp-light"
+                                     color-picker="settings.additionalParams.HighlightColor">
+                                    <div class="sp-preview">
+                                        <div class="sp-preview-inner"
+                                             style="background-color: {{settings.additionalParams.HighlightColor}}">
+                                            <img src="http://s3.amazonaws.com/rise-common-test/scripts/spectrum/images/text-highlight.png">
+                                        </div>
+                                    </div>
+                                    <b class="caret"></b>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                                <span class="col-md-12" style=" text-align: {{settings.additionalParams.alignment}};
+                                font-family: {{settings.additionalParams.FontType.family}};
+                                font-size:{{settings.additionalParams.fontSize}}px;
+
+                                font-weight: {{settings.additionalParams.FontStyle.bold && 'bold' || 'none'}};
+                                font-style: {{settings.additionalParams.FontStyle.italic && 'italic' || 'none'}};
+                                text-decoration: {{settings.additionalParams.FontStyle.underline && 'underline' || 'none'}};
+
+                                background-color: {{settings.additionalParams.HighlightColor}};
+                                color:{{settings.additionalParams.FontColor}};">
+                                   <span id="time" ng-show="settings.additionalParams.showTime">{{settings.additionalParams.timeFormat | moment:'format':settings.additionalParams.tFormat}}</span>
+                                   <span id="datetime" ng-show="settings.additionalParams.showDate">{{settings.additionalParams.timeFormat | moment:'format':settings.additionalParams.dFormat}}</span>
+                                </span>
+                    </div>
+                </div>
+                <!--End Story Format-->
+
+                <hr/>
+                <p class="half-top">{{"settings.heading.whatwidgetdo" | translate}}</p>
+            </div>
+            <!-- End Modal Body-->
+
+            <!--Modal Footer-->
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <widget-button-toolbar save="saveSettings()" cancel="closeSettings()"
+                                           class="pull-right no-lg-icons widget-btn-bar"></widget-button-toolbar>
+                </div>
+            </div>
+            <!-- End Modal Footer-->
+        </div>
+        <!-- End Modal Content-->
+    </div>
+    <!-- End Modal -->
+</div>
+<!-- End Container Fluid-->
+<script src="js/settings.min.js"></script>
+
+
+<!-- build:e2egadgets -->
+
+<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
+
+
+</body>
+</html>
