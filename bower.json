@@ -1,7 +1,7 @@
 {
-  "name": "widget-hello-world",
+  "name": "widget-clock",
   "version": "0.1.0",
-  "description": "Rise Vision Hello World Widget",
+  "description": "Rise Vision Clock Widget",
   "license": "GPLv3",
   "private": true,
   "ignore": [
