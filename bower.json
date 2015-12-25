@@ -1,0 +1,27 @@
+{
+  "name": "widget-hello-world",
+  "version": "0.1.0",
+  "description": "Rise Vision Hello World Widget",
+  "license": "GPLv3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "src/components"
+  ],
+  "dependencies": {
+    "widget-settings-ui-components": "https://github.com/Rise-Vision/widget-settings-ui-components.git#0.1.0",
+    "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core.git#0.1.8",
+    "mjolnic-bootstrap-colorpicker": "https://github.com/mjolnic/bootstrap-colorpicker.git",
+    "font-awesome": "~4.4.0",
+    "bootstrap": "https://github.com/twbs/bootstrap.git#3.3.5",
+    "hint.css": "~1.3.5",
+    "moment": "~2.10.6",
+    "angular-moment": "~0.10.3"
+  },
+  "resolutions": {
+    "angular-translate": "~2.5.2",
+    "angular-translate-loader-static-files": "~2.5.2",
+    "jquery": "1.11.0"
+  }
+}
