@@ -2739,6 +2739,7 @@
 
 .customFontStyle{
     padding:20px;
+    background-color: transparent;
 }
 .height100{
     height:100%;
@@ -2755,4 +2756,11 @@
 
 .widget-btn-bar {
     width: 222px;
+}
+.checkbox label, .radio label{
+    padding-left: 0 !important;
+    font-weight:bold !important;
+}
+label.add-bottom.ng-binding{
+    font-weight:normal;
 }

@@ -25,6 +25,11 @@
                     <i class="fa fa-times half-top"></i>
                 </button>
                 <h2 class="modal-title">{{"settings.heading.label" | translate}}
+                    <button class="btn btn-link">
+                        <a href="https://github.com/Rise-Vision/widget-time-date" target="_blank">
+                            <i class="fa fa-github fa-2x icon-gray"></i>
+                        </a>
+                    </button>
                 </h2>
             </div>
             <!-- End Modal Header-->
@@ -35,10 +40,8 @@
                     <div class="checkbox">
                         <div class="form-group">
                             <div class="col-md-2">
-                                <label class="add-bottom">
-                                    <input type="checkbox" checked="checked"
-                                           ng-model="settings.additionalParams.showTime">{{"settings.showTime.label" | translate}}
-                                </label>
+                                <label class="ng-binding ng-scope">{{"settings.TimeFormat.label" | translate}}</label>
+
                             </div>
                         </div>
                     </div>
@@ -49,7 +52,10 @@
                     <position-setting>
                         <div class="row">
                             <div class="col-md-4">
-                                <label class="ng-binding ng-scope">{{"settings.TimeFormat.label" | translate}}</label>
+                                <label class="add-bottom">
+                                    <input type="checkbox" checked="checked"
+                                           ng-model="settings.additionalParams.showTime">{{"settings.showTime.label" | translate}}
+                                </label>
                                 <select name="position" class="form-control"
                                         ng-model="settings.additionalParams.tFormat">
                                     <option value="h:mm A" class="ng-binding" selected>{{"settings.TimeFormat.12-Hour" | translate}}</option>
@@ -66,10 +72,7 @@
                     <div class="checkbox">
                         <div class="form-group">
                             <div class="col-md-2">
-                                <label class="add-bottom">
-                                    <input type="checkbox" checked="checked"
-                                           ng-model="settings.additionalParams.showDate">{{"settings.ShowDate.label" | translate}}
-                                </label>
+                                <label class="ng-binding ng-scope">{{"settings.DateFormat.label" | translate}}</label></label>
                             </div>
                         </div>
                     </div>
@@ -80,8 +83,10 @@
                     <position-setting>
                         <div class="row">
                             <div class="col-md-4">
-                                <label class="ng-binding ng-scope">{{"settings.DateFormat.label" | translate}}</label></label>
-                                <select name="position" class="form-control"
+                                <label class="add-bottom">
+                                    <input type="checkbox" checked="checked"
+                                           ng-model="settings.additionalParams.showDate">{{"settings.ShowDate.label" | translate}}
+                                </label><select name="position" class="form-control"
                                         ng-model="settings.additionalParams.dFormat">
                                     <option value="MMMM DD, YYYY" class="ng-binding" selected> {{"settings.DateFormat.MMMMDDYYYY" | translate}}</option>
                                     <option value="MMM DD YYYY" class="ng-binding">{{"settings.DateFormat.MMMDDYYYY" | translate}} </option>
@@ -150,7 +155,7 @@
 
                             <!--Font Highlight-->
                             <li class="pull-left font-setting-button">
-                                <input ng-model="settings.additionalParams.HighlightColor" type="highlight" class="ng-isolate-scope"
+                                <input ng-model="settings.additionalParams.HighlightColor" type="text" class="ng-isolate-scope"
                                        style="display: none;">
 
                                 <div class="sp-replacer highlight-color-picker sp-light"
@@ -170,7 +175,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                                <span class="col-md-12" style=" text-align: {{settings.additionalParams.alignment}};
+                        <div class="font-picker-text form-group"  style=" text-align: {{settings.additionalParams.alignment}};
                                 font-family: {{settings.additionalParams.FontType.family}};
                                 font-size:{{settings.additionalParams.fontSize}}px;
 
@@ -180,9 +185,11 @@
 
                                 background-color: {{settings.additionalParams.HighlightColor}};
                                 color:{{settings.additionalParams.FontColor}};">
+
                                    <span id="time" ng-show="settings.additionalParams.showTime">{{settings.additionalParams.timeFormat | moment:'format':settings.additionalParams.tFormat}}</span>
                                    <span id="datetime" ng-show="settings.additionalParams.showDate">{{settings.additionalParams.timeFormat | moment:'format':settings.additionalParams.dFormat}}</span>
-                                </span>
+
+                        </div>
                     </div>
                 </div>
                 <!--End Story Format-->

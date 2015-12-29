@@ -40619,27 +40619,28 @@ var minlengthDirective = function() {
 quizWidget = {
 
   /**
-   * Widget only config here
-   * */
-  config: {
-    /**
-     * Product Code for access to Store API
-     * If null / false / undefined / Empty String then authorization will be ignored.
-     * */
-    productId: ''
-
-  },
-
-  /**
    * Settings object. this will hold all the settings passed to the widget.
    * Defaults saved here
    * */
   settings: {
       FontType: {
-          family: 'Times New Roman'
+          family: 'Arial'
       },
       HighlightColor: '#ffffff',
-      FontColor: '#000000'
+      FontColor: '#000000',
+      FontStyle:
+      {
+          bold : false ,
+          italic : false ,
+          underline : false
+      },
+      fontSize: "20",
+      timeFormat: "12",
+      tFormat: "h:mm A",
+      dFormat: "MMMM DD, YYYY",
+      alignment: "left",
+      showTime: true,
+      showDate: true
   },
 
   /**
@@ -40770,6 +40771,7 @@ quizWidget = {
           RefreshTimer
             .event
             .on('start', function () {
+
                   if(that.settings.showTime) {
                       document.getElementById("time").innerHTML = moment(new Date()).format(that.settings.tFormat);
                   }else {
@@ -40855,23 +40857,6 @@ quizWidget = {
           gadgets.rpc.call("", "rsparam_get", null, id, "displayId");
         }
       };
-
-      this.authorizeWidget = function (displayId) {
-        if (this.config.productId && this.config.productId.length) {
-          var _auth = new RiseVision.Common.Store.Auth();
-          _auth.checkForDisplay(displayId, this.config.productId, function (authorized) {
-            if (authorized) {
-              // The Widget is authorized
-              _this.boot();
-            } else {
-              _this.ready();//show display
-            }
-          });
-        } else {
-          this.boot();
-        }
-      };
-
       this.boot = function () {
         gadgets.rpc.call("", "rsparam_get", null, id, "additionalParams");
         gadgets.rpc.register("rscmd_play_" + id, function () {
@@ -40893,7 +40878,7 @@ quizWidget = {
 
       this.processRPCResponse = function (name, value) {
         if (name === 'displayId') {
-          this.authorizeWidget(value);
+          this.boot();
         } else if (name === "additionalParams") {
           this.getAdditionalParams(value);
         }
