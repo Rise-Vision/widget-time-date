@@ -49,27 +49,3 @@ Do the gulp build in `prod` environment:
 > whenever you build, build using NODE_ENV=prod gulp build to build it in prod env such that valid i18n files are picked.
 
 All Done! the built code must be in the dist folder replacing old one there.
-
-## Add app ID
-If you need risevision store auth in the project, you can add the risevision store ID in the file `src/widget/quiz-widget.js` where `productId` is mentioned:
-
-```javascript
-quizWidget = {
-
-  /**
-   * Widget only config here
-   * */
-  config: {
-    /**
-     * Product Code for access to Store API
-     * If null / false / undefined / Empty String then authorization will be ignored.
-     * */
-    productId: '' // <--- ADD HERE
-
-  },
-
-```
-
-Once you add, rebuild the project again following the steps mentioned above.
-
-
