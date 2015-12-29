@@ -15,13 +15,13 @@ angular.module("risevision.clock")
         "params": {},
         "additionalParams": {
             "FontColor": "#000",
-            "fontSize": "14",
-            "FontType": {font: "Times New Roman", type: 'Standard', family: 'Times New Roman'},
+            "fontSize": "20",
+            "FontType": {font: "Arial", type: 'Standard', family: 'Arial'},
             "timeFormat": "12",
-            "tFormat": "H:mm",
+            "tFormat": "h:mm A",
             "dFormat": "MMMM DD, YYYY",
             "alignment": "left",
-            "HighlightColor": "#fff",
+            "HighlightColor": "#00000",
             "FontStyle": {bold : false , italic : false , underline : false },
             "showTime": true,
             "showDate": true

@@ -4,13 +4,13 @@
   },
   "settings": {
     "showTime": {
-      "label": "Show Time"
+      "label": " Show Time"
     },
     "ShowDate": {
-      "label": "Show Date"
+      "label": " Show Date"
     },
     "TimeFormat":{
-      "label":"Time Format",
+      "label":"Time",
       "12-Hour":"12-Hour",
       "24-Hour":"24-Hour"
     },
@@ -20,7 +20,7 @@
       "24-Hour":"24-Hour"
     },
     "DateFormat":{
-      "label":"Date Format",
+      "label":"Date",
       "MMMMDDYYYY":"MMMM DD, YYYY",
       "MMMDDYYYY":"MMM DD YYYY",
       "MMDDYYYY":"MM/DD/YYYY",
@@ -36,158 +36,7 @@
     },
     "errors": {
       "error": "Errors:"
-    },
-    "Questions": {
-      "question": {
-        "label": "questions",
-        "placeHolder": "Enter your question here"
-      },
-      "optionPlaceHolder": {
-        "option1": "option1",
-        "option2": "option2",
-        "option3": "option3",
-        "option4": "option4"
-      },
-      "selectAsAnAnswer": {
-        "answer": "Select as answer"
-      },
-      "displayQuestionImage": {
-        "label": "Display Question Image"
-      },
-      "displayAnswerImage": {
-        "label": "Display Answer Image"
-      },
-      "addQuestion": {
-        "label": "ADD QUESTION"
-      },
-      "noQuestion": {
-        "label": "NO QUESTIONS"
-      },
-      "beforeUploadingImage": {
-        "changeImage": "Change Image"
-      },
-      "afterUploadingImage": {
-        "uploadImage": "Upload Image"
-      }
-    },
-    "input": {
-      "fontColor": {
-        "label": "Font Color:",
-        "help": "Select the font Color for your widget."
-      },
-      "backgroundColor":{
-        "label":"Background Color",
-        "help":"Select the Color of Background here"
-      },
-      "highlightColor":{
-        "label":"Highlight Color",
-        "help":"Select the Color of highlight here"
-      },
-      "imageBgColor":{
-        "label":"Image Bg Color",
-        "help":"Select the Background Color of image holder here"
-      },
-      "textBgColor":{
-        "label":"Text Bg Color",
-        "help":"Select the Background Color of text holders here"
-      },
-      "opTextColor":{
-        "label":"Option Label Color",
-        "help":"Select the color of option label here"
-      },
-      "ansTextFontStyle":{
-        "Normal":"Normal",
-        "Bold":"Bold",
-        "Italic":"Italic"
-      },
-
-      "ansTextBgColor":{
-        "label":"Correct Answer Text Bg Color",
-        "help":"Select the Background Color of Correct Answer text"
-      },
-      "ansTextFontColor":{
-        "label":"Correct Answer Text Color",
-        "help":"Select the color of Correct Answer Text here"
-      },
-      "ansTextFontColor":{
-        "label":"Correct Answer Text Color",
-        "help":"Select the color of Correct Answer Text here"
-      },
-      "ansTextFontType":{
-        "label":"Correct Answer Text Font Type",
-        "help":"Select the color of Correct Answer Font Type here"
-      },
-
-      "timerTextFontColor":{
-        "label":"Timer text Color",
-        "help":"Select the Font of Timer text here"
-      },
-      "timerTextFontType":{
-        "label":"Timer Font Type",
-        "help":"Select the Font Type of Timer here"
-      },
-      "FontSize": {
-        "label": "Font Size :",
-        "help": "Select the Size of Text. If SVG enabled then displayed with auto font and layout scaling.",
-        "rendering": "SVG Rendering?"
-      },
-      "FontType": {
-        "label": "Font Type :",
-        "help": "Select the Type of Text"
-      },
-      "PreloadImages": {
-        "label": "Preload Images:",
-        "yes": "Yes",
-        "no": "No",
-        "help":"Preload Images before Starting Widget"
-      },
-      "ShowPicInAnswer": {
-        "label": "Show picture in answer :",
-        "yes": "Yes",
-        "no": "No"
-      },
-      "MaxQuestionToDisplay": {
-        "label": "Max question to display :",
-        "help": "How many Questions You want to Play"
-      },
-      "TimeToDisplayQuestion": {
-        "label": "Time to display question only (seconds) :",
-        "help": "Time for Questions to Display"
-      },
-      "TimeToDisplayOptions": {
-        "label": "Time to display question with options (seconds) :",
-        "help": "Time for Options to Display"
-      },
-      "TimeToDisplayAnswer": {
-        "label": "Time to display answer (seconds) :",
-        "help": "Select the time to display your answers"
-      },
-      "seconds": {
-        "0": "0 seconds",
-        "5": "5 seconds",
-        "10": "10 seconds",
-        "15": "15 seconds"
-      },
-      "OrderingOfQuestion": {
-        "label": "Ordering of question :",
-        "option1": "fixed",
-        "option2": "random",
-        "help": "Select the ordering of Questions"
-      }
     }
-  },
-  "widget": {
-    "title": "QUIZ",
-    "question": "Question?",
-    "optionA": "A",
-    "optionB": "B",
-    "optionC": "C",
-    "optionD": "D",
-    "load": "loading...",
-    "addQues":"Please add questions!",
-    "maxQuesNotSet":"You have questions but max questions is set to Zero.",
-    "saveSettingFirst":"Please save settings first!",
-    "theCorrectAnsIs":"The correct answer is:"
   },
   "background": {
     "choice": "Use Image",
