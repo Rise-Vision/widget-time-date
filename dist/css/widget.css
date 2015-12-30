@@ -13,7 +13,10 @@
     border-radius: 4px;
     min-height: 50px;
 }
-
+*, :after, :before {
+    box-sizing: border-box;
+    text-decoration: none;
+}
 .customFontStyle{
     padding:20px;
     position: absolute;
