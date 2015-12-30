@@ -43,6 +43,7 @@ quizWidget = {
      * */
     _applyFontColorAndBgColor: function () {
         $('.customFontStyle').css({backgroundColor: this.settings.HighlightColor,color: this.settings.FontColor,textAlign : this.settings.alignment,fontFamily: this.settings.FontType.family,fontSize:this.settings.fontSize+"px",fontWeight: this.settings.FontStyle.bold && 'bold' || 'none',fontStyle: this.settings.FontStyle.italic && 'italic' || 'none',textDecoration: this.settings.FontStyle.underline && 'underline' || 'none'});
+        $('.bckstyle').css({backgroundColor: this.settings.HighlightColor});
     },
 
     /**

@@ -7,10 +7,13 @@
 
 .customFontStyle{
     padding:20px;
+    position: absolute;
     background-color: transparent;
 }
 .height100{
     height:100%;
+    width: 100%;
+    vertical-align: middle;
 }
 
 .sticky-buttons {
@@ -32,4 +35,18 @@
 label.add-bottom.ng-binding{
     font-weight:normal;
     cursor: pointer;
+}
+
+.block:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+
+.centered {
+    vertical-align: middle;
+    width: auto;
 }
