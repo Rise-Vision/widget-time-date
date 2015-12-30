@@ -167,7 +167,7 @@
                                 font-style: {{settings.additionalParams.FontStyle.italic && 'italic' || 'none'}};
                                 text-decoration: {{settings.additionalParams.FontStyle.underline && 'underline' || 'none'}};
 
-                                background-color: {{settings.additionalParams.HighlightColor}};
+                                background-color: {{settings.additionalParams.HighlightColor && settings.additionalParams.HighlightColor || '#efefef'}};
                                 color:{{settings.additionalParams.FontColor}};">
 
                                    <span id="time" ng-show="settings.additionalParams.showTime">{{settings.additionalParams.timeFormat | moment:'format':settings.additionalParams.tFormat}}</span>
