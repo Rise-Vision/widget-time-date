@@ -40626,7 +40626,7 @@ quizWidget = {
       FontType: {
           family: 'Arial'
       },
-      HighlightColor: '#EFEFEF',
+      HighlightColor: '#efefef',
       FontColor: '#000000',
       FontStyle:
       {

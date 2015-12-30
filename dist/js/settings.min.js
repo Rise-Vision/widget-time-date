@@ -47843,7 +47843,7 @@ angular.module("risevision.clock")
             "tFormat": "h:mm A",
             "dFormat": "MMMM DD, YYYY",
             "alignment": "left",
-            "HighlightColor": "#EFEFEF",
+            "HighlightColor": "#efefef",
             "FontStyle": {bold : false , italic : false , underline : false },
             "showTime": true,
             "showDate": true
