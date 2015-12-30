@@ -9,7 +9,7 @@ quizWidget = {
       FontType: {
           family: 'Arial'
       },
-      HighlightColor: '#ffffff',
+      HighlightColor: '#EFEFEF',
       FontColor: '#000000',
       FontStyle:
       {

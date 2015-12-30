@@ -47836,14 +47836,14 @@ angular.module("risevision.clock")
     .value("defaultSettings", {
         "params": {},
         "additionalParams": {
-            "FontColor": "#000",
+            "FontColor": "#00000",
             "fontSize": "20",
             "FontType": {font: "Arial", type: 'Standard', family: 'Arial'},
             "timeFormat": "12",
             "tFormat": "h:mm A",
             "dFormat": "MMMM DD, YYYY",
             "alignment": "left",
-            "HighlightColor": "#00000",
+            "HighlightColor": "#EFEFEF",
             "FontStyle": {bold : false , italic : false , underline : false },
             "showTime": true,
             "showDate": true
