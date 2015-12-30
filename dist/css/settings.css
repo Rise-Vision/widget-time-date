@@ -2763,4 +2763,5 @@
 }
 label.add-bottom.ng-binding{
     font-weight:normal;
+    cursor: pointer;
 }

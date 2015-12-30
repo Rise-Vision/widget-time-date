@@ -36,67 +36,45 @@
 
             <!-- Start Modal Body-->
             <div class="modal-body">
-                <div class="row">
-                    <div class="checkbox">
-                        <div class="form-group">
-                            <div class="col-md-2">
-                                <label class="ng-binding ng-scope">{{"settings.TimeFormat.label" | translate}}</label>
-
-                            </div>
+                <div class="form-group">
+                    <position-setting>
+                    <label class="ng-binding ng-scope">{{"settings.TimeFormat.label" | translate}}</label>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="add-bottom">
+                            <input type="checkbox" checked="checked"
+                                   ng-model="settings.additionalParams.showTime">{{"settings.showTime.label" | translate}}
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="position" class="form-control"
+                                    ng-model="settings.additionalParams.tFormat">
+                                <option value="h:mm A" class="ng-binding" selected>{{"settings.TimeFormat.12-Hour" | translate}}</option>
+                                <option value="H:mm" class="ng-binding">{{"settings.TimeFormat.24-Hour" | translate}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
 
-                <!-- Format-->
                 <div class="form-group">
-                    <position-setting>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label class="add-bottom">
-                                    <input type="checkbox" checked="checked"
-                                           ng-model="settings.additionalParams.showTime">{{"settings.showTime.label" | translate}}
-                                </label>
-                                <select name="position" class="form-control"
-                                        ng-model="settings.additionalParams.tFormat">
-                                    <option value="h:mm A" class="ng-binding" selected>{{"settings.TimeFormat.12-Hour" | translate}}</option>
-                                    <option value="H:mm" class="ng-binding">{{"settings.TimeFormat.24-Hour" | translate}}</option>
-                                </select>
-                            </div>
-
+                    <label class="ng-binding ng-scope">{{"settings.DateFormat.label" | translate}}</label>
+                    <div class="row">
+                        <div class="col-md-2 ">
+                            <label class="add-bottom">
+                            <input type="checkbox" checked="checked"
+                                   ng-model="settings.additionalParams.showDate">{{"settings.ShowDate.label" | translate}}
+                            </label>
                         </div>
-                    </position-setting>
-
-                </div>
-
-                <div class="row">
-                    <div class="checkbox">
-                        <div class="form-group">
-                            <div class="col-md-2">
-                                <label class="ng-binding ng-scope">{{"settings.DateFormat.label" | translate}}</label></label>
-                            </div>
+                        <div class="col-md-4">
+                            <select name="position" class="form-control"
+                                    ng-model="settings.additionalParams.dFormat">
+                                <option value="MMMM DD, YYYY" class="ng-binding" selected> {{"settings.DateFormat.MMMMDDYYYY" | translate}}</option>
+                                <option value="MMM DD YYYY" class="ng-binding">{{"settings.DateFormat.MMMDDYYYY" | translate}} </option>
+                                <option value="MM/DD/YYYY" class="ng-binding">{{"settings.DateFormat.MMDDYYYY" | translate}} </option>
+                                <option value="DD/MM/YYYY" class="ng-binding">{{"settings.DateFormat.DDMMYYYY" | translate}} </option>
+                            </select>
                         </div>
                     </div>
-                </div>
-
-                <!-- Format-->
-                <div class="form-group">
-                    <position-setting>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label class="add-bottom">
-                                    <input type="checkbox" checked="checked"
-                                           ng-model="settings.additionalParams.showDate">{{"settings.ShowDate.label" | translate}}
-                                </label><select name="position" class="form-control"
-                                        ng-model="settings.additionalParams.dFormat">
-                                    <option value="MMMM DD, YYYY" class="ng-binding" selected> {{"settings.DateFormat.MMMMDDYYYY" | translate}}</option>
-                                    <option value="MMM DD YYYY" class="ng-binding">{{"settings.DateFormat.MMMDDYYYY" | translate}} </option>
-                                    <option value="MM/DD/YYYY" class="ng-binding">{{"settings.DateFormat.MMDDYYYY" | translate}} </option>
-                                    <option value="DD/MM/YYYY" class="ng-binding">{{"settings.DateFormat.DDMMYYYY" | translate}} </option>
-                                </select>
-                            </div>
-                        </div>
-                    </position-setting>
-
                 </div>
 
                 <!--Heading Format-->
