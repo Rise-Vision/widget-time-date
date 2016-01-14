@@ -1,27 +1,42 @@
 {
-  "name": "widget-clock",
-  "version": "0.1.0",
-  "description": "Rise Vision Clock Widget",
+  "name": "widget-time-date",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Rise-Vision/widget-time-date",
+  "description": "Rise Vision Time and Date Widget",
+  "keywords": [
+    "rise-vision",
+    "widget",
+    "time",
+    "date",
+    "clock"
+  ],
   "license": "GPLv3",
   "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
-    "src/components"
+    "src/components",
+    "test"
   ],
+  "devDependencies": {
+    "angular-mocks": "~1.3.0",
+    "q": "1.0.1",
+    "web-component-tester": "*"
+  },
   "dependencies": {
-    "widget-settings-ui-components": "https://github.com/Rise-Vision/widget-settings-ui-components.git#0.1.0",
-    "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core.git#0.1.8",
-    "mjolnic-bootstrap-colorpicker": "https://github.com/mjolnic/bootstrap-colorpicker.git",
-    "font-awesome": "~4.4.0",
-    "bootstrap": "https://github.com/twbs/bootstrap.git#3.3.5",
-    "hint.css": "~1.3.5",
-    "moment": "~2.10.6",
-    "angular-moment": "~0.10.3"
+    "angular": "~1.3.0",
+    "angular-bootstrap": "~0.11.1",
+    "angular-route": "~1.3.0",
+    "rv-common-i18n": "https://github.com/Rise-Vision/common-i18n.git#1.3.23",
+    "rv-common-style": "https://github.com/Rise-Vision/common-style.git#1.3.42",
+    "widget-common": "https://github.com/Rise-Vision/widget-common.git#0.6.3",
+    "widget-settings-ui-components": "https://github.com/Rise-Vision/widget-settings-ui-components.git#1.2.3",
+    "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core.git#0.1.11"
   },
   "resolutions": {
-    "angular-translate": "~2.5.2",
-    "angular-translate-loader-static-files": "~2.5.2",
-    "jquery": "1.11.0"
+    "angular": "~1.3.0",
+    "angular-mocks": "~1.3.0",
+    "angular-sanitize": "~1.3.0",
+    "jquery": "~2.1.1"
   }
 }

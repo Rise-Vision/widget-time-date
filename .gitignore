@@ -1,27 +1,8 @@
-###################
-# IDE Files
-###################
-*.idea
-*.iml
-*.ipr
-workspace.xml
-misc.xml
-.idea
-.idea/misc.xml
-
-###########################
-# NPM Files
-###########################
+*.log
 node_modules/
-
-###########################
-# component
-###########################
-/src/components/
-
-.DS_Store
-/src/.DS_Store
-settings-e2e.html
-widget-e2e.html
+reports/
+src/components/
+src/config/config.js
+src/*-e2e.html
 
 
