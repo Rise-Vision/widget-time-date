@@ -1,7 +1,7 @@
 {
-  "name": "widget-clock",
-  "version": "0.1.0",
-  "description": "Rise Vision Clock Widget",
+  "name": "widget-time-date",
+  "version": "1.0.0",
+  "description": "Rise Vision Time and Date Widget",
   "main": "gulpfile.js",
   "scripts": {
     "test": "gulp test",
@@ -13,12 +13,19 @@
   },
   "author": "Rise Vision",
   "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/Rise-Vision/widget-time-date/issues"
+  },
   "devDependencies": {
+    "bower": "^1.5.3",
     "chai": "^2.1.2",
     "chai-as-promised": "^4.3.0",
+    "colors": "~1.0.3",
     "del": "~1.1.1",
-    "gulp": "~3.8.3",
+    "gulp": "^3.9.0",
+    "gulp-bower": "~0.0.10",
     "gulp-bump": "~0.1.8",
+    "gulp-if": "^2.0.0",
     "gulp-jshint": "~1.5.5",
     "gulp-jsonminify": "^1.0.0",
     "gulp-minify-css": "0.3.4",
@@ -27,12 +34,10 @@
     "gulp-uglify": "^0.3.1",
     "gulp-usemin": "0.3.7",
     "gulp-util": "~2.2.17",
-    "gulp-watch": "^0.6.8",
-    "jshint-stylish": "^0.2.0",
-    "mocha": "^2.1.0",
-    "phantomjs": "1.9.15",
-    "protractor": "~1.0.0",
+    "jshint-stylish": "^2.1.0",
+    "phantomjs": "^1.9.16",
     "run-sequence": "^0.3.2",
-    "widget-tester": "git://github.com/Rise-Vision/widget-tester.git"
+    "web-component-tester": "*",
+    "widget-tester": "git://github.com/Rise-Vision/widget-tester.git#0.4.1"
   }
 }

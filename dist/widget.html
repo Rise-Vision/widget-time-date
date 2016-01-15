@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Time and Date Widget</title>
 
-        <title>{{"title.titleName" | translate}}</title>
-        <link rel="stylesheet" href="css/widget.min.css"/>
-    </head>
+  <link rel="stylesheet" href="css/widget.min.css"/>
 
-    <body class="height100 bckstyle">
-         <div class="height100">
-                    <span class="customFontStyle height100 block">
-                        <span class="centered"><span id="time"></span>
-                            <span id="datetime"></span>
-                        </span>
-                    </span>
-         </div>
-        <script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
-        <script src="js/widget.min.js"></script>
-    </body>
+</head>
+
+<body>
+
+<div id="container"></div>
+
+<div id="messageContainer"></div>
+
+<!-- build:e2egadgets -->
+<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
+
+
+<script src="js/widget.min.js"></script>
+</body>
 </html>
