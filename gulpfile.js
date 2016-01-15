@@ -94,6 +94,55 @@
       .pipe(gulp.dest("dist/locales"));
   });
 
+  gulp.task("webdriver_update", factory.webdriveUpdate());
+
+// ***** e2e Testing ***** //
+
+  gulp.task("html:e2e:settings", factory.htmlE2E());
+
+  gulp.task("e2e:server:settings", ["config", "html:e2e:settings"], factory.testServer());
+
+  gulp.task("test:e2e:settings:run", ["webdriver_update"], factory.testE2EAngular({
+    testFiles: "test/e2e/settings.js"}
+  ));
+
+  gulp.task("test:e2e:settings", function(cb) {
+    runSequence(["e2e:server:settings"], "test:e2e:settings:run", "e2e:server-close", cb);
+  });
+
+  gulp.task("e2e:server-close", factory.testServerClose());
+
+  gulp.task("test:e2e", function(cb) {
+    runSequence("test:e2e:settings", cb);
+  });
+
+// ****** Unit Testing ***** //
+  gulp.task("test:unit:settings", factory.testUnitAngular(
+    {testFiles: [
+      "src/components/jquery/dist/jquery.js",
+      "src/components/angular/angular.js",
+      "src/components/angular-mocks/angular-mocks.js",
+      "src/components/angular-sanitize/angular-sanitize.js",
+      "src/components/angular-translate/angular-translate.js",
+      "src/components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+      "node_modules/widget-tester/mocks/common-mock.js",
+      "src/components/angular-bootstrap/ui-bootstrap-tpls.js",
+      "src/components/widget-settings-ui-components/dist/js/**/*.js",
+      "src/components/widget-settings-ui-core/dist/*.js",
+      "src/config/test.js",
+      "src/settings/settings-app.js",
+      "src/settings/**/*.js",
+      "test/unit/settings/**/*spec.js"]}
+  ));
+
+  gulp.task("test:unit", function(cb) {
+    runSequence("test:unit:settings", cb);
+  });
+
+  gulp.task("test", function(cb) {
+    runSequence("test:unit", "test:e2e", cb);
+  });
+
   gulp.task("build", function (cb) {
     runSequence(["clean", "config"], ["source", "fonts", "i18n"], ["unminify"], cb);
   });
