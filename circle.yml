@@ -34,7 +34,7 @@ deployment:
   staging:
     branch: /(feature|fix|chore).*/
     commands:
-      - NODE_ENV=prod npm run build
+      - NODE_ENV=test npm run build
       - >
         STAGE_ENV="$(git log -1 --pretty=%B | grep '\[.*\]' |sed -e 's/.*\[\(.*\)\].*/\1/g')";
         if [ "$STAGE_ENV" != '' ]; then

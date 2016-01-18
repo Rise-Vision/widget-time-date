@@ -116,6 +116,11 @@
     runSequence("test:e2e:settings", cb);
   });
 
+  // Integration testing
+  gulp.task("test:integration", function(cb) {
+    runSequence("test:local", cb);
+  });
+
 // ****** Unit Testing ***** //
   gulp.task("test:unit:settings", factory.testUnitAngular(
     {testFiles: [
@@ -125,6 +130,8 @@
       "src/components/angular-translate/angular-translate.js",
       "src/components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
       "node_modules/widget-tester/mocks/common-mock.js",
+      "node_modules/widget-tester/mocks/gadget-mocks.js",
+      "node_modules/widget-tester/mocks/logger-mock.js",
       "src/components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
       "src/components/angular-bootstrap/ui-bootstrap-tpls.js",
       "src/components/widget-settings-ui-components/dist/js/**/*.js",
@@ -136,12 +143,23 @@
       "test/unit/settings/**/*spec.js"]}
   ));
 
+  gulp.task("test:unit:widget", factory.testUnitAngular(
+    {testFiles: [
+      "node_modules/widget-tester/mocks/gadget-mocks.js",
+      "node_modules/widget-tester/mocks/logger-mock.js",
+      "src/components/widget-common/dist/config.js",
+      "src/config/config.js",
+      "src/widget/time-date.js",
+      "test/unit/time-date-spec.js"
+    ]}
+  ));
+
   gulp.task("test:unit", function(cb) {
-    runSequence("test:unit:settings", cb);
+    runSequence("test:unit:settings", "test:unit:widget", cb);
   });
 
   gulp.task("test", function(cb) {
-    runSequence("test:unit", "test:e2e", cb);
+    runSequence("test:unit", "test:e2e", "test:integration", cb);
   });
 
   gulp.task("build", function (cb) {
