@@ -4,6 +4,24 @@
   window.gadget = window.gadget || {};
   window.gadget.settings = {
     "params": {},
-    "additionalParams": {}
+    "additionalParams": {
+      "showTime": true,
+      "timeFormat": "h:mm A",
+      "showDate": true,
+      "dateFormat": "MMMM DD, YYYY",
+      "fontStyle":{
+        "font": {
+          "type": "standard",
+          "name": "Verdana",
+          "family": "Verdana"
+        },
+        "size": "20",
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "color": "black",
+        "highlightColor": "transparent"
+      }
+    }
   };
 })(window);

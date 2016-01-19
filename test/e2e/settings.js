@@ -20,13 +20,61 @@
       expect(element(by.css("button#save")).isPresent()).to.eventually.be.true;
       expect(element(by.css("button#cancel")).isPresent()).to.eventually.be.true;
 
+      // Font Setting
+      expect(element(by.css("#time-date-font font-picker")).isPresent()).to.eventually.be.true;
+
+    });
+
+    it("Should correctly load default settings", function () {
+      // Show Time should be true
+      expect(element(by.model("settings.additionalParams.showTime")).isSelected()).to.eventually.be.true;
+
+      // Time format should be h:mm A
+      expect(element(by.model("settings.additionalParams.timeFormat")).getAttribute("value")).to.eventually.equal("h:mm A");
+
+      // Show Date should be true
+      expect(element(by.model("settings.additionalParams.showDate")).isSelected()).to.eventually.be.true;
+
+      // Date format should be MMMM DD, YYYY
+      expect(element(by.model("settings.additionalParams.dateFormat")).getAttribute("value")).to.eventually.equal("MMMM DD, YYYY");
+
+      // save button should be enabled
+      expect(element(by.css("button#save[disabled=disabled")).isPresent()).to.eventually.be.false;
+
+      // form should be valid
+      expect(element(by.css("form[name='settingsForm'].ng-invalid")).isPresent()).to.eventually.be.false;
+    });
+
+    it("Should hide Font Setting if both show time and show date are unchecked", function () {
+      element(by.model("settings.additionalParams.showTime")).click();
+      element(by.model("settings.additionalParams.showDate")).click();
+
+      expect(element(by.css("#time-date-font font-picker")).isPresent()).to.eventually.be.false;
     });
 
     // Saving
     it("Should correctly save settings", function () {
       var settings = {
         "params": {},
-        "additionalParams": {}
+        "additionalParams": {
+          "showTime": true,
+          "timeFormat": "h:mm A",
+          "showDate": true,
+          "dateFormat": "MMMM DD, YYYY",
+          "fontStyle":{
+            "font": {
+              "type": "standard",
+              "name": "Verdana",
+              "family": "Verdana"
+            },
+            "size": "20",
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "color": "black",
+            "highlightColor": "transparent"
+          }
+        }
       };
 
       element(by.id("save")).click();
