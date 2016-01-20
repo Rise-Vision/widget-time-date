@@ -45,7 +45,7 @@
           <i class="fa fa-times half-top"></i>
         </button>
         <h2 class="modal-title">
-          {{"time-date.settings" | translate }}
+          {{"widget-time-date.settings" | translate }}
           <a class="btn btn-link" href="https://github.com/Rise-Vision/widget-time-date" target="_blank">
             <i class="fa fa-github fa-2x icon-gray"></i>
           </a>
@@ -56,7 +56,65 @@
       <form role="form" name="settingsForm">
         <div class="modal-body">
 
+          <!-- Time-->
+          <div class="form-group">
+            <label>{{"widget-time-date.time.label" | translate}}</label>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="checkbox">
+                  <label for="show-time">
+                    <input id="show-time" type="checkbox" ng-model="settings.additionalParams.showTime"
+                           >
+                    {{"widget-time-date.time.show" | translate}}
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-4" ng-show="settings.additionalParams.showTime">
+                <select name="time-format" ng-model="settings.additionalParams.timeFormat" class="form-control">
+                  <option value="h:mm A">{{"widget-time-date.time.formats.twelve" | translate}}</option>
+                  <option value="HH:mm A">{{"widget-time-date.time.formats.twenty-four" | translate}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Date-->
+          <div class="form-group">
+            <label>{{"widget-time-date.date.label" | translate}}</label>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="checkbox">
+                  <label for="show-date">
+                    <input id="show-date" type="checkbox" ng-model="settings.additionalParams.showDate"
+                           >
+                    {{"widget-time-date.date.show" | translate}}
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-4" ng-show="settings.additionalParams.showDate">
+                <select name="date-format" ng-model="settings.additionalParams.dateFormat" class="form-control">
+                  <option value="MMMM DD, YYYY">{{currentDate | date: "MMMM dd',' yyyy"}}</option>
+                  <option value="MMM DD YYYY">{{currentDate | date: "MMM dd yyyy"}}</option>
+                  <option value="MM/DD/YYYY">{{currentDate | date: "MM'/'dd'/'yyyy"}}</option>
+                  <option value="DD/MM/YYYY">{{currentDate | date: "dd'/'MM'/'yyyy"}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Font Style -->
+          <div class="form-group" ng-if="settings.additionalParams.showDate || settings.additionalParams.showTime">
+            <label>{{"widgets.font" | translate}}</label>
+            <font-setting id="time-date-font"
+                          font-data="settings.additionalParams.fontStyle"
+                          hide-alignment="true"
+                          preview-text="{{previewText}}">
+            </font-setting>
+          </div>
+
           <hr>
+
+          <p class="half-top">{{"widget-time-date.system" | translate}}</p>
         </div><!-- .modal-body -->
 
         <!-- Modal Footer-->
