@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Image Widget</title>
+
+  <link rel="stylesheet" type="text/css" href="../../src/widget/css/styles.css">
+  <link rel="stylesheet" href="../../src/components/widget-common/dist/css/message.css">
+
+  <script src="../../src/components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src="../../src/components/web-component-tester/browser.js"></script>
+
+</head>
+<body>
+
+<div id="container"></div>
+
+<div id="messageContainer"></div>
+
+<script src="../data/timedate-no-date.js"></script>
+
+<script src="../../node_modules/widget-tester/mocks/gadget-mocks.js"></script>
+<script src="../../node_modules/widget-tester/mocks/logger-mock.js"></script>
+
+<script src="../../src/components/widget-common/dist/config.js"></script>
+<script src="../../src/config/test.js"></script>
+<script src="../../src/widget/time-date.js"></script>
+<script src="../../src/components/widget-common/dist/message.js"></script>
+<script src="../../src/components/widget-common/dist/common.js"></script>
+<script src="../../src/components/moment/moment.js"></script>
+<script src="../../src/widget/main.js"></script>
+
+<script>
+
+  suite("time-date", function() {
+
+
+    suite("Time and Date no date", function () {
+      var clock, now;
+
+      suiteSetup(function() {
+        now = new Date();
+        clock = sinon.useFakeTimers(now.getTime());
+      });
+
+      suiteTeardown(function() {
+        clock.restore();
+      });
+
+      test("should show the time-date container", function() {
+        assert.isNotNull(document.querySelector(".time-and-date"));
+      });
+
+      test("should show the current time on the default format", function() {
+        assert.equal(document.querySelector(".time-and-date").textContent, moment(now).format("h:mm A"));
+      });
+    });
+  });
+</script>
+</body>
+</html>
