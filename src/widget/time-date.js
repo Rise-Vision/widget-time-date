@@ -104,7 +104,7 @@ RiseVision.TimeDate = (function (gadgets) {
   }
 
   function getTableName() {
-    return "time-date_events";
+    return "time_date_events";
   }
 
   function logEvent(params) {

@@ -2,7 +2,7 @@
 
 describe("getTableName", function() {
   it("should return the correct table name", function() {
-    expect(RiseVision.TimeDate.getTableName(), "time-date_events");
+    expect(RiseVision.TimeDate.getTableName(), "time_date_events");
   });
 });
 
@@ -30,7 +30,7 @@ describe("logEvent", function() {
       "event_details": "test details"
     });
 
-    expect(logSpy).to.have.been.calledWith("time-date_events", params);
+    expect(logSpy).to.have.been.calledWith("time_date_events", params);
   });
 
   it("should call spy with correct parameters when only the event is set", function() {
@@ -42,7 +42,7 @@ describe("logEvent", function() {
 
     RiseVision.TimeDate.logEvent({ "event": "test" });
 
-    expect(logSpy).to.have.been.calledWith("time-date_events", params);
+    expect(logSpy).to.have.been.calledWith("time_date_events", params);
   });
 
   it("should call spy with correct configuration and play event parameters when play is called", function() {
@@ -63,8 +63,8 @@ describe("logEvent", function() {
 
     RiseVision.TimeDate.play();
 
-    expect(logSpy).to.have.been.calledWith("time-date_events", configurationParams);
-    expect(logSpy).to.have.been.calledWith("time-date_events", playParams);
+    expect(logSpy).to.have.been.calledWith("time_date_events", configurationParams);
+    expect(logSpy).to.have.been.calledWith("time_date_events", playParams);
   });
 
 });
