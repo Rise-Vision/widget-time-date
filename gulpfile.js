@@ -94,6 +94,15 @@
       .pipe(gulp.dest("dist/locales"));
   });
 
+  gulp.task("tinymce", function() {
+    return gulp.src([
+        "src/components/tinymce-dist/plugins/**/*",
+        "src/components/tinymce-dist/skins/**/*",
+        "src/components/tinymce-dist/themes/**/*"
+      ], {base: "./src/components/tinymce-dist"})
+      .pipe(gulp.dest("dist/js"));
+  });
+
   gulp.task("webdriver_update", factory.webdriveUpdate());
 
 // ***** e2e Testing ***** //
@@ -163,7 +172,7 @@
   });
 
   gulp.task("build", function (cb) {
-    runSequence(["clean", "config"], ["source", "fonts", "i18n"], ["unminify"], cb);
+    runSequence(["clean", "config"], ["source", "fonts", "i18n", "tinymce"], ["unminify"], cb);
   });
 
   gulp.task("default", function(cb) {
