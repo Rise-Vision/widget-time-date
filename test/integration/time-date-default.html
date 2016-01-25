@@ -55,6 +55,10 @@
       test("should show the current time on the default format", function() {
         assert.equal(document.querySelector(".time-and-date").textContent, moment(now).format("h:mm A MMMM DD, YYYY"));
       });
+
+      test("should left align content", function() {
+        assert.equal(document.querySelector(".time-and-date").style.textAlign, "left");
+      });
     });
 
   });

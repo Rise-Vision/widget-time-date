@@ -94,6 +94,15 @@
       .pipe(gulp.dest("dist/locales"));
   });
 
+  gulp.task("tinymce", function() {
+    return gulp.src([
+        "src/components/tinymce-dist/plugins/**/*",
+        "src/components/tinymce-dist/skins/**/*",
+        "src/components/tinymce-dist/themes/**/*"
+      ], {base: "./src/components/tinymce-dist"})
+      .pipe(gulp.dest("dist/js"));
+  });
+
   gulp.task("webdriver_update", factory.webdriveUpdate());
 
 // ***** e2e Testing ***** //
@@ -127,6 +136,7 @@
       "src/components/jquery/dist/jquery.js",
       "src/components/angular/angular.js",
       "src/components/angular-mocks/angular-mocks.js",
+      "src/components/angular-load/angular-load.js",
       "src/components/angular-translate/angular-translate.js",
       "src/components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
       "node_modules/widget-tester/mocks/common-mock.js",
@@ -134,6 +144,8 @@
       "node_modules/widget-tester/mocks/logger-mock.js",
       "src/components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
       "src/components/angular-bootstrap/ui-bootstrap-tpls.js",
+      "src/components/tinymce-dist/tinymce.js",
+      "src/components/angular-ui-tinymce/src/tinymce.js",
       "src/components/widget-settings-ui-components/dist/js/**/*.js",
       "src/components/widget-settings-ui-core/dist/*.js",
       "src/components/bootstrap-form-components/dist/js/**/*.js",
@@ -163,7 +175,7 @@
   });
 
   gulp.task("build", function (cb) {
-    runSequence(["clean", "config"], ["source", "fonts", "i18n"], ["unminify"], cb);
+    runSequence(["clean", "config"], ["source", "fonts", "i18n", "tinymce"], ["unminify"], cb);
   });
 
   gulp.task("default", function(cb) {
