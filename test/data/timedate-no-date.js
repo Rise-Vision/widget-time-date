@@ -11,16 +11,16 @@
       "dateFormat": "MMMM DD, YYYY",
       "fontStyle":{
         "font": {
-          "type": "standard",
-          "name": "Verdana",
-          "family": "Verdana"
+          "family": "verdana,geneva,sans-serif",
+          "type": "standard"
         },
-        "size": "20",
+        "size": "24px",
+        "align": "left",
         "bold": false,
         "italic": false,
         "underline": false,
-        "color": "black",
-        "highlightColor": "transparent"
+        "forecolor": "black",
+        "backcolor": "transparent"
       }
     }
   };

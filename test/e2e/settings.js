@@ -21,7 +21,7 @@
       expect(element(by.css("button#cancel")).isPresent()).to.eventually.be.true;
 
       // Font Setting
-      expect(element(by.css("#time-date-font font-picker")).isPresent()).to.eventually.be.true;
+      expect(element(by.css("#time-date-font .mce-tinymce")).isPresent()).to.eventually.be.true;
 
     });
 
@@ -63,16 +63,16 @@
           "dateFormat": "MMMM DD, YYYY",
           "fontStyle":{
             "font": {
-              "type": "standard",
-              "name": "Verdana",
-              "family": "Verdana"
+              "family": "verdana,geneva,sans-serif",
+              "type": "standard"
             },
-            "size": "20",
+            "size": "24px",
+            "align": "left",
             "bold": false,
             "italic": false,
             "underline": false,
-            "color": "black",
-            "highlightColor": "transparent"
+            "forecolor": "black",
+            "backcolor": "transparent"
           }
         }
       };
