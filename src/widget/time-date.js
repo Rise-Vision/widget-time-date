@@ -35,8 +35,9 @@ RiseVision.TimeDate = (function (gadgets) {
     _format += (_additionalParams.showDate) ? _additionalParams.dateFormat : "";
 
 
-    _timeAndDateContainer = document.createElement("div");
+    _timeAndDateContainer = document.createElement("p");
     _timeAndDateContainer.className = "time-and-date";
+    _timeAndDateContainer.style.textAlign = _additionalParams.fontStyle.align;
 
     document.getElementById("container").appendChild(_timeAndDateContainer);
 
