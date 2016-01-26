@@ -31,8 +31,14 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.20/angular.min.js"></script>
   <!-- if AngularJS fails to load fallback to a local version -->
-  <script>window.angular || document.write(unescape("%3Cscript src='components/angular/angular.min.js' type='text/javascript'%3E%3C/script%3E"));
+  <script>window.angular || document.write(unescape("%3Cscript src='js/vendor/angular/angular.min.js' type='text/javascript'%3E%3C/script%3E"));
   </script>
+
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <!-- if TinyMCE fails to load fallback to a local version -->
+  <script>window.tinymce || document.write(unescape("%3Cscript src='js/vendor/tinymce-dist/tinymce.min.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
 </head>
 <body ng-app="risevision.widget.timedate.settings" ng-controller="settingsController">
 <div class="container-fluid image-settings-fs">
@@ -132,7 +138,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
   if (typeof jQuery == "undefined") {
-    document.write(unescape("%3Cscript src='components/jquery/dist/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+    document.write(unescape("%3Cscript src='js/vendor/jquery/dist/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
   }
 </script>
 
