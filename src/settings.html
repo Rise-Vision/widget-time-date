@@ -38,6 +38,9 @@
   <!-- if AngularJS fails to load fallback to a local version -->
   <script>window.angular || document.write(unescape("%3Cscript src='components/angular/angular.min.js' type='text/javascript'%3E%3C/script%3E"));
   </script>
+  <!-- TinyMCE requires loading separately from the concatenated JS source -->
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
 </head>
 <body ng-app="risevision.widget.timedate.settings" ng-controller="settingsController">
 <div class="container-fluid image-settings-fs">
@@ -153,7 +156,6 @@
 <script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="components/bootstrap-select/bootstrap-select.js"></script>
 <script src="components/spectrum/spectrum.js"></script>
-<script src="components/tinymce-dist/tinymce.js"></script>
 <script src="components/angular-ui-tinymce/src/tinymce.js"></script>
 <script src="components/rv-bootstrap-formhelpers/dist/js/rv-bootstrap-formhelpers.js"></script>
 <script src="components/bootstrap-form-components/dist/js/bootstrap-font-picker.js"></script>
