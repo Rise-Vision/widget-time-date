@@ -27,6 +27,17 @@
     htmlFiles = [
       "./src/settings.html",
       "./src/widget.html"
+    ],
+    vendorFiles = [
+      "./src/components/tinymce-dist/plugins/**/*",
+      "./src/components/tinymce-dist/skins/**/*",
+      "./src/components/tinymce-dist/themes/**/*",
+      "./src/components/tinymce-dist/tinymce*.js",
+      "./src/components/angular/angular*.js",
+      "./src/components/angular/*.gzip",
+      "./src/components/angular/*.map",
+      "./src/components/angular/*.css",
+      "./src/components/jquery/dist/**/*"
     ];
 
   gulp.task("clean", function (cb) {
@@ -92,6 +103,11 @@
   gulp.task("i18n", function(cb) {
     return gulp.src(["src/components/rv-common-i18n/dist/locales/**/*"])
       .pipe(gulp.dest("dist/locales"));
+  });
+
+  gulp.task("vendor", function(cb) {
+    return gulp.src(vendorFiles, {base: "./src/components"})
+      .pipe(gulp.dest("dist/js/vendor"));
   });
 
   gulp.task("webdriver_update", factory.webdriveUpdate());
@@ -166,7 +182,7 @@
   });
 
   gulp.task("build", function (cb) {
-    runSequence(["clean", "config"], ["source", "fonts", "i18n"], ["unminify"], cb);
+    runSequence(["clean", "config"], ["source", "fonts", "i18n", "vendor"], ["unminify"], cb);
   });
 
   gulp.task("default", function(cb) {
