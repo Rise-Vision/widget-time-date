@@ -3,6 +3,12 @@ body {
   padding: 0;
 }
 
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 #messageContainer {
   display: none; /* hide by default */
   position: absolute;
