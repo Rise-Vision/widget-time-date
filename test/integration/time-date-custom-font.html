@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Time and Date - Custom Font</title>
+
+  <link rel="stylesheet" type="text/css" href="../../src/widget/css/styles.css">
+  <link rel="stylesheet" href="../../src/components/widget-common/dist/css/message.css">
+
+  <script src="../../src/components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src="../../src/components/web-component-tester/browser.js"></script>
+</head>
+<body>
+
+  <div id="container"></div>
+
+  <div id="messageContainer"></div>
+
+  <script src="../data/timedate-custom-font.js"></script>
+
+  <script src="../../node_modules/widget-tester/mocks/gadget-mocks.js"></script>
+  <script src="../../node_modules/widget-tester/mocks/logger-mock.js"></script>
+
+  <script src="../../src/components/widget-common/dist/config.js"></script>
+  <script src="../../src/config/test.js"></script>
+  <script src="../../src/widget/time-date.js"></script>
+  <script src="../../src/components/widget-common/dist/message.js"></script>
+  <script src="../../src/components/widget-common/dist/common.js"></script>
+  <script src="../../src/components/moment/moment.js"></script>
+  <script src="../../src/widget/main.js"></script>
+
+  <script>
+    suite("Custom Font", function () {
+      test("should load the custom font", function() {
+        // This may fail locally but will run on CCI because CCI expects quotes around the URL.
+        assert.equal(document.styleSheets[0].cssRules[0].cssText, '@font-face { font-family: BrushScriptStd; src: url("https://my.custom.font/BrushScriptStd.otf"); }');
+        // assert.equal(document.styleSheets[0].cssRules[0].cssText, '@font-face { font-family: BrushScriptStd; src: url(https://my.custom.font/BrushScriptStd.otf); }');
+      });
+
+      test("should add a CSS class called time-and-date", function() {
+        assert.equal(document.styleSheets[3].cssRules[0].cssText, ".time-and-date { font-family: BrushScriptStd; color: black; font-size: 24px; font-weight: normal; font-style: normal; text-decoration: none; background-color: transparent; }");
+      });
+
+      test("should apply the time-and-date class", function() {
+        assert.isNotNull(document.querySelector(".time-and-date"));
+      });
+    });
+  </script>
+</body>
+</html>
