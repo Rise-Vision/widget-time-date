@@ -84,5 +84,39 @@
         "additionalParams": JSON.stringify(settings.additionalParams)
       });
     });
+
+    it("Should correctly save 24h hours format", function () {
+      var settings = {
+        "params": {},
+        "additionalParams": {
+          "showTime": true,
+          "timeFormat": "HH:mm",
+          "showDate": true,
+          "dateFormat": "MMMM DD, YYYY",
+          "fontStyle":{
+            "font": {
+              "family": "verdana,geneva,sans-serif",
+              "type": "standard"
+            },
+            "size": "24px",
+            "align": "left",
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "forecolor": "black",
+            "backcolor": "transparent"
+          }
+        }
+      };
+
+      element(by.cssContainingText('option', 'widget-time-date.time.formats.twenty-four')).click();
+
+      element(by.id("save")).click();
+
+      expect(browser.executeScript("return window.result")).to.eventually.deep.equal({
+        "params": "",
+        "additionalParams": JSON.stringify(settings.additionalParams)
+      });
+    });
   });
 })();
