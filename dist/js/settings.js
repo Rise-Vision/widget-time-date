@@ -10130,7 +10130,7 @@ module.run(["$templateCache", function($templateCache) {
           // Initialize TinyMCE.
           function initTinyMCE() {
             $scope.tinymceOptions = {
-              font_formats: WIDGET_SETTINGS_UI_CONFIG.families + _googleFontList + "Custom=custom;",
+              font_formats: "Use Custom Font=custom;" + WIDGET_SETTINGS_UI_CONFIG.families + _googleFontList,
               fontsize_formats: WIDGET_SETTINGS_UI_CONFIG.sizes,
               menubar: false,
               plugins: "textcolor colorpicker",
@@ -10152,7 +10152,8 @@ module.run(["$templateCache", function($templateCache) {
                 });
               },
               init_instance_callback: function(editor) {
-                var oldApply = editor.formatter.apply;
+                var oldApply = editor.formatter.apply,
+                  oldRemove = editor.formatter.remove;
 
                 // Reference - http://goo.gl/55IhWI
                 editor.formatter.apply = function apply(name, vars, node) {
@@ -10162,6 +10163,16 @@ module.run(["$templateCache", function($templateCache) {
                   };
 
                   oldApply(name, vars, node);
+                  editor.fire("ExecCommand", args);
+                };
+
+                editor.formatter.remove = function remove(name, vars, node) {
+                  var args = {
+                    command: name,
+                    value: (vars && vars.value) ? vars.value : null
+                  };
+
+                  oldRemove(name, vars, node);
                   editor.fire("ExecCommand", args);
                 };
               }
@@ -10259,11 +10270,11 @@ module.run(["$templateCache", function($templateCache) {
                 break;
 
               case "forecolor":
-                $scope.fontData.forecolor = args.value;
+                $scope.fontData.forecolor = (args.value) ? args.value : $scope.defaultFont.forecolor;
                 break;
 
               case "hilitecolor":
-                $scope.fontData.backcolor = args.value;
+                $scope.fontData.backcolor = (args.value) ? args.value : $scope.defaultFont.backcolor;
                 break;
 
               case "mceToggleFormat":
@@ -11090,7 +11101,7 @@ angular.module("risevision.widget.timedate.settings")
       $scope.mapAngularTimeFormat = function (momentFormat) {
         var timeToAngular = {
           "h:mm A": "h:mm a",
-          "HH:mm A": "HH:mm a"
+          "HH:mm": "HH:mm"
         };
 
         return timeToAngular[momentFormat];

@@ -8,7 +8,7 @@ angular.module("risevision.widget.timedate.settings")
       $scope.mapAngularTimeFormat = function (momentFormat) {
         var timeToAngular = {
           "h:mm A": "h:mm a",
-          "HH:mm A": "HH:mm a"
+          "HH:mm": "HH:mm"
         };
 
         return timeToAngular[momentFormat];
