@@ -35,6 +35,21 @@ deployment:
     branch: /(feature|fix|chore).*/
     commands:
       - NODE_ENV=test npm run build
+      # deploy an unminified (dev) staging version
+      - >
+        STAGE_ENV="$(git log -1 --pretty=%B | grep '\[.*\]' |sed -e 's/.*\[\(.*\)\].*/\1/g')";
+        if [ "$STAGE_ENV" != '' ]; then
+          echo Deploying version $(grep version package.json |grep -o '[0-9.]*') to $BUCKET_NAME-test/$STAGE_ENV-dev;
+          STAGE_ENV="$STAGE_ENV-dev";
+        fi;
+        if [ "$STAGE_ENV" == '' ]; then
+          echo Deploying version $(grep version package.json |grep -o '[0-9.]*') to $BUCKET_NAME-test/stage-0-dev;
+          STAGE_ENV='stage-0-dev';
+        fi;
+        $awscli s3 ls s3://$BUCKET_NAME-test || ($awscli s3 mb s3://$BUCKET_NAME-test && $awscli s3api put-bucket-acl --bucket $BUCKET_NAME-test --grant-read 'uri="http://acs.amazonaws.com/groups/global/AllUsers"');
+        $awscli s3 sync ./dist s3://$BUCKET_NAME-test/$STAGE_ENV/$(grep version package.json |grep -o '[0-9.]*')/dist --delete --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers;
+      - NODE_ENV=prod npm run build
+      # deploy a minified (production) staging version
       - >
         STAGE_ENV="$(git log -1 --pretty=%B | grep '\[.*\]' |sed -e 's/.*\[\(.*\)\].*/\1/g')";
         if [ "$STAGE_ENV" != '' ]; then
