@@ -5,10 +5,9 @@
 
   var chai = require("chai");
   var chaiAsPromised = require("chai-as-promised");
-  var expect = chai.expect;
 
   chai.use(chaiAsPromised);
-  browser.driver.manage().window().setSize(1024, 768);
+  var expect = chai.expect;
 
   describe("Time and Date Settings - e2e Testing", function() {
 
@@ -16,39 +15,33 @@
       browser.get("/src/settings-e2e.html");
     });
 
-    it("Should load Save button", function () {
+    it("Should load all components", function () {
+      // Widget Button Toolbar
       expect(element(by.css("button#save")).isPresent()).to.eventually.be.true;
-    });
-
-    it("Should load Cancel button", function () {
       expect(element(by.css("button#cancel")).isPresent()).to.eventually.be.true;
-    });
 
-    it("Should load Font Setting component", function () {
+      // Font Setting
       expect(element(by.css("#time-date-font .mce-tinymce")).isPresent()).to.eventually.be.true;
+
     });
 
-    it("Should select Show Time", function () {
+    it("Should correctly load default settings", function () {
+      // Show Time should be true
       expect(element(by.model("settings.additionalParams.showTime")).isSelected()).to.eventually.be.true;
-    });
 
-    it("Should set time format", function () {
+      // Time format should be h:mm A
       expect(element(by.model("settings.additionalParams.timeFormat")).getAttribute("value")).to.eventually.equal("h:mm A");
-    });
 
-    it("Should select Show Date", function () {
+      // Show Date should be true
       expect(element(by.model("settings.additionalParams.showDate")).isSelected()).to.eventually.be.true;
-    });
 
-    it("Should set date format", function () {
+      // Date format should be MMMM DD, YYYY
       expect(element(by.model("settings.additionalParams.dateFormat")).getAttribute("value")).to.eventually.equal("MMMM DD, YYYY");
-    });
 
-    it("Should enable Save button", function () {
+      // save button should be enabled
       expect(element(by.css("button#save[disabled=disabled")).isPresent()).to.eventually.be.false;
-    });
 
-    it("Should set form to valid", function () {
+      // form should be valid
       expect(element(by.css("form[name='settingsForm'].ng-invalid")).isPresent()).to.eventually.be.false;
     });
 
@@ -71,8 +64,7 @@
           "fontStyle":{
             "font": {
               "family": "verdana,geneva,sans-serif",
-              "type": "standard",
-              "url": ""
+              "type": "standard"
             },
             "size": "24px",
             "align": "left",
