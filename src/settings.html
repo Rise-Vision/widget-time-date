@@ -6,9 +6,6 @@
 
   <!-- build:css css/settings.min.css -->
   <link rel="stylesheet" href="components/rv-common-style/dist/css/rise.min.css">
-  <link rel="stylesheet" href="components/spectrum/spectrum.css">
-  <link rel="stylesheet" href="components/bootstrap-select/bootstrap-select.css">
-  <link rel="stylesheet" href="components/rv-bootstrap-formhelpers/dist/css/rv-bootstrap-formhelpers.css">
   <!-- endbuild -->
 
   <style type="text/css">
@@ -116,10 +113,8 @@
           <!-- Font Style -->
           <div class="form-group" ng-if="settings.additionalParams.showDate || settings.additionalParams.showTime">
             <label>{{"widgets.font" | translate}}</label>
-            <font-setting id="time-date-font"
-                          font-data="settings.additionalParams.fontStyle"
-                          hide-alignment="true"
-                          preview-text="{{previewText}}">
+            <font-setting id="time-date-font" font-data="settings.additionalParams.fontStyle"
+              preview-text="{{previewText}}">
             </font-setting>
           </div>
 
@@ -155,27 +150,19 @@
 <script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 <script src="components/rv-common-i18n/dist/i18n.js"></script>
 
+<!-- Font Setting -->
 <script src="components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
 <script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="components/bootstrap-select/bootstrap-select.js"></script>
-<script src="components/spectrum/spectrum.js"></script>
+<script src="components/widget-settings-ui-components/dist/js/widget-settings-ui-components.js"></script>
+<script src="components/widget-settings-ui-components/dist/js/angular/url-field.js"></script>
+<script src="components/widget-settings-ui-components/dist/js/angular/font-setting.js"></script>
+
+<!-- TinyMCE -->
 <script src="components/angular-ui-tinymce/src/tinymce.js"></script>
-<script src="components/rv-bootstrap-formhelpers/dist/js/rv-bootstrap-formhelpers.js"></script>
-<script src="components/bootstrap-form-components/dist/js/bootstrap-font-picker.js"></script>
-<script src="components/bootstrap-form-components/dist/js/angular/bootstrap-font-picker.js"></script>
-<script src="components/bootstrap-form-components/dist/js/bootstrap-font-size-picker.js"></script>
-<script src="components/bootstrap-form-components/dist/js/angular/bootstrap-font-size-picker.js"></script>
-<script src="components/widget-settings-ui-components/dist/js/alignment.js"></script>
-<script src="components/widget-settings-ui-components/dist/js/angular/alignment.js"></script>
-<script src="components/widget-settings-ui-components/dist/js/url-field.js"></script>
-<script src="components/widget-settings-ui-components/dist/js/angular/color-picker.js"></script>
-<script src="components/widget-settings-ui-components/dist/js/font-style.js"></script>
-<script src="components/widget-settings-ui-components/dist/js/angular/font-style.js"></script>
 
 <!-- Time and Date Settings -->
 <script src="components/widget-settings-ui-components/dist/js/angular/widget-button-toolbar.js"></script>
 <script src="components/widget-settings-ui-components/dist/js/angular/tooltip.js"></script>
-<script src="components/widget-settings-ui-components/dist/js/angular/font-setting.js"></script>
 <script src="config/config.js"></script>
 <script src="settings/settings-app.js"></script>
 <script src="components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>

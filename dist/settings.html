@@ -111,10 +111,8 @@
           <!-- Font Style -->
           <div class="form-group" ng-if="settings.additionalParams.showDate || settings.additionalParams.showTime">
             <label>{{"widgets.font" | translate}}</label>
-            <font-setting id="time-date-font"
-                          font-data="settings.additionalParams.fontStyle"
-                          hide-alignment="true"
-                          preview-text="{{previewText}}">
+            <font-setting id="time-date-font" font-data="settings.additionalParams.fontStyle"
+              preview-text="{{previewText}}">
             </font-setting>
           </div>
 
