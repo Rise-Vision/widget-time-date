@@ -104,7 +104,8 @@
           "fontStyle":{
             "font": {
               "family": "verdana,geneva,sans-serif",
-              "type": "standard"
+              "type": "standard",
+              "url": ""
             },
             "size": "24px",
             "align": "left",
