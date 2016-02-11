@@ -15,6 +15,7 @@
           "type": "standard"
         },
         "size": "24px",
+        "customSize": "",
         "align": "left",
         "bold": false,
         "italic": false,

@@ -75,6 +75,7 @@
               "url": ""
             },
             "size": "24px",
+            "customSize": "",
             "align": "left",
             "bold": false,
             "italic": false,
@@ -108,6 +109,7 @@
               "url": ""
             },
             "size": "24px",
+            "customSize": "",
             "align": "left",
             "bold": false,
             "italic": false,
