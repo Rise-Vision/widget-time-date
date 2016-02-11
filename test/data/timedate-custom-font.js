@@ -16,6 +16,7 @@
           "url": "https://my.custom.font/BrushScriptStd.otf",
         },
         "size": "24px",
+        "customSize": "",
         "align": "left",
         "bold": false,
         "italic": false,
