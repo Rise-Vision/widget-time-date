@@ -59,6 +59,10 @@
       expect(element(by.css("#time-date-font font-picker")).isPresent()).to.eventually.be.false;
     });
 
+    it("Should select the player's time zone", function () {
+      expect(element(by.model("settings.additionalParams.useTimezone")).getAttribute("value")).to.eventually.equal('false');
+    });
+
     // Saving
     it("Should correctly save settings", function () {
       var settings = {
@@ -68,6 +72,8 @@
           "timeFormat": "h:mm A",
           "showDate": true,
           "dateFormat": "MMMM DD, YYYY",
+          "useTimezone": false,
+          "timezone": "",
           "fontStyle":{
             "font": {
               "family": "verdana,geneva,sans-serif",
@@ -102,6 +108,8 @@
           "timeFormat": "HH:mm",
           "showDate": true,
           "dateFormat": "MMMM DD, YYYY",
+          "useTimezone": false,
+          "timezone": "",
           "fontStyle":{
             "font": {
               "family": "verdana,geneva,sans-serif",
@@ -121,6 +129,46 @@
       };
 
       element(by.cssContainingText('option', 'widget-time-date.time.formats.twenty-four')).click();
+
+      element(by.id("save")).click();
+
+      expect(browser.executeScript("return window.result")).to.eventually.deep.equal({
+        "params": "",
+        "additionalParams": JSON.stringify(settings.additionalParams)
+      });
+    });
+
+    it("Should correctly save timezone option", function () {
+      var settings = {
+        "params": {},
+        "additionalParams": {
+          "showTime": true,
+          "timeFormat": "h:mm A",
+          "showDate": true,
+          "dateFormat": "MMMM DD, YYYY",
+          "useTimezone": true,
+          "timezone": "US/Central",
+          "fontStyle":{
+            "font": {
+              "family": "verdana,geneva,sans-serif",
+              "type": "standard",
+              "url": ""
+            },
+            "size": "24px",
+            "customSize": "",
+            "align": "left",
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "forecolor": "black",
+            "backcolor": "transparent"
+          }
+        }
+      };
+
+      element.all(by.model("settings.additionalParams.useTimezone")).last().click();
+
+      element(by.cssContainingText('option', 'US/Central')).click();
 
       element(by.id("save")).click();
 

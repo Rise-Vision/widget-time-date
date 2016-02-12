@@ -35,26 +35,14 @@ describe("Unit Tests - Settings Controller", function () {
     expect(defaultSettings).to.be.an("object");
   });
 
-  it("mapAngularDateFormat() should return a corresponding Angular date format from a moment date format", function () {
-    var angularFormat = scope.mapAngularDateFormat("MMMM DD, YYYY");
-
-    expect(angularFormat).to.equal("MMMM dd',' yyyy");
-  });
-
-  it("mapAngularTimeFormat() should return a corresponding Angular time format from a moment time format", function () {
-    var angularFormat = scope.mapAngularTimeFormat("h:mm A");
-
-    expect(angularFormat).to.equal("h:mm a");
-  });
-
   it("should set value of preview text to include time and date with correct formats", function() {
     var time, date;
 
-    scope.currentDate = new Date();
+    scope.currentDate = moment();
     scope.$digest();
 
-    time = filter("date")(scope.currentDate, scope.mapAngularTimeFormat(scope.settings.additionalParams.timeFormat));
-    date = filter("date")(scope.currentDate, scope.mapAngularDateFormat(scope.settings.additionalParams.dateFormat));
+    time = scope.currentDate.format(scope.settings.additionalParams.timeFormat);
+    date = scope.currentDate.format(scope.settings.additionalParams.dateFormat);
 
     expect(scope.previewText).to.equal(time + " " + date);
 
@@ -62,8 +50,8 @@ describe("Unit Tests - Settings Controller", function () {
     scope.settings.additionalParams.dateFormat = "DD/MM/YYYY";
     scope.$digest();
 
-    time = filter("date")(scope.currentDate, scope.mapAngularTimeFormat(scope.settings.additionalParams.timeFormat));
-    date = filter("date")(scope.currentDate, scope.mapAngularDateFormat(scope.settings.additionalParams.dateFormat));
+    time = scope.currentDate.format(scope.settings.additionalParams.timeFormat);
+    date = scope.currentDate.format(scope.settings.additionalParams.dateFormat);
 
     expect(scope.previewText).to.equal(time + " " + date);
   });
@@ -71,12 +59,12 @@ describe("Unit Tests - Settings Controller", function () {
   it("should set value of preview text to only include time", function() {
     var time;
 
-    scope.currentDate = new Date();
+    scope.currentDate = moment();
     scope.settings.additionalParams.showTime = true;
     scope.settings.additionalParams.showDate = false;
     scope.$digest();
 
-    time = filter("date")(scope.currentDate, scope.mapAngularTimeFormat(scope.settings.additionalParams.timeFormat));
+    time = scope.currentDate.format(scope.settings.additionalParams.timeFormat);
 
     expect(scope.previewText).to.equal(time);
   });
@@ -84,14 +72,31 @@ describe("Unit Tests - Settings Controller", function () {
   it("should set value of preview text to only include date", function() {
     var date;
 
-    scope.currentDate = new Date();
+    scope.currentDate = moment();
     scope.settings.additionalParams.showTime = false;
     scope.settings.additionalParams.showDate = true;
     scope.$digest();
 
-    date = filter("date")(scope.currentDate, scope.mapAngularDateFormat(scope.settings.additionalParams.dateFormat));
+    date = scope.currentDate.format(scope.settings.additionalParams.dateFormat);
 
     expect(scope.previewText).to.equal(date);
+  });
+
+
+  it("should set value of preview text to include time and date with correct formats", function() {
+    var time, date;
+
+    scope.currentDate = moment();
+    scope.settings.additionalParams.showTime = true;
+    scope.settings.additionalParams.useTimezone = true;
+    scope.settings.additionalParams.timezone = "US/Central";
+    scope.$digest();
+
+    time = scope.currentDate.tz(scope.settings.additionalParams.timezone).format(scope.settings.additionalParams.timeFormat);
+    date = scope.currentDate.tz(scope.settings.additionalParams.timezone).format(scope.settings.additionalParams.dateFormat);
+
+    expect(scope.previewText).to.equal(time + " " + date);
+
   });
 
 });

@@ -9,6 +9,8 @@
       "timeFormat": "h:mm A",
       "showDate": true,
       "dateFormat": "MMMM DD, YYYY",
+      "useTimezone": false,
+      "timezone": "",
       "fontStyle":{
         "font": {
           "family": "verdana,geneva,sans-serif",

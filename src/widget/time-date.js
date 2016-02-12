@@ -74,9 +74,13 @@ RiseVision.TimeDate = (function (gadgets) {
   function _draw() {
 
     if (_format) {
-      var now = new Date();
+      var currentDate = moment();
 
-      _timeAndDateContainer.innerHTML = moment(now).format(_format);
+      if(_additionalParams.useTimezone){
+        currentDate = moment().tz(_additionalParams.timezone);
+      }
+
+      _timeAndDateContainer.innerHTML = currentDate.format(_format);
 
       _timeoutId = setTimeout(function() {
         _draw();
