@@ -37,7 +37,10 @@
       "./src/components/angular/*.gzip",
       "./src/components/angular/*.map",
       "./src/components/angular/*.css",
-      "./src/components/jquery/dist/**/*"
+      "./src/components/jquery/dist/**/*",
+      "./src/components/moment/min/moment.min.js",
+      "./src/components/moment-timezone/builds/*.js"
+
     ];
 
   gulp.task("clean", function (cb) {
@@ -114,7 +117,9 @@
 
 // ***** e2e Testing ***** //
 
-  gulp.task("html:e2e:settings", factory.htmlE2E());
+  gulp.task("html:e2e:settings", factory.htmlE2E({
+    e2emomenttimezone: "components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"
+  }));
 
   gulp.task("e2e:server:settings", ["config", "html:e2e:settings"], factory.testServer());
 
@@ -156,6 +161,8 @@
       "src/components/widget-settings-ui-components/dist/js/**/*.js",
       "src/components/widget-settings-ui-core/dist/*.js",
       "src/components/bootstrap-form-components/dist/js/**/*.js",
+      "src/components/moment/moment.js",
+      "src/components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js",
       "src/config/test.js",
       "src/settings/settings-app.js",
       "src/settings/**/*.js",

@@ -9,13 +9,12 @@
       "timeFormat": "h:mm A",
       "showDate": true,
       "dateFormat": "MMMM DD, YYYY",
-      "useTimezone": false,
-      "timezone": "",
+      "useTimezone": true,
+      "timezone": "US/Central",
       "fontStyle":{
         "font": {
-          "family": "BrushScriptStd",
-          "type": "custom",
-          "url": "https://my.custom.font/BrushScriptStd.otf",
+          "family": "verdana,geneva,sans-serif",
+          "type": "standard"
         },
         "size": "24px",
         "customSize": "",
