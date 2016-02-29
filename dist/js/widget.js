@@ -218,7 +218,7 @@ RiseVision.Common = RiseVision.Common || {};
 RiseVision.Common.RiseCache = (function () {
   "use strict";
 
-  var BASE_CACHE_URL = "http://localhost:9494/";
+  var BASE_CACHE_URL = "//localhost:9494/";
 
   var _pingReceived = false,
     _isCacheRunning = false;
@@ -262,10 +262,10 @@ RiseVision.Common.RiseCache = (function () {
       return;
     }
 
-    function fileRequest(isCacheRunning) {
+    function fileRequest() {
       var url, str, separator;
 
-      if (isCacheRunning) {
+      if (_isCacheRunning) {
         // configure url with cachebuster or not
         url = (nocachebuster) ? BASE_CACHE_URL + "?url=" + encodeURIComponent(fileUrl) :
         BASE_CACHE_URL + "cb=" + new Date().getTime() + "?url=" + encodeURIComponent(fileUrl);
@@ -289,36 +289,38 @@ RiseVision.Common.RiseCache = (function () {
           url: url
         };
 
-      xhr.open(method, url, true);
+      if (_isCacheRunning) {
+        xhr.open(method, url, true);
 
-      xhr.addEventListener("loadend", function () {
-        var status = xhr.status || 0;
+        xhr.addEventListener("loadend", function () {
+          var status = xhr.status || 0;
 
-        if (status >= 200 && status < 300) {
-          callback(request);
-        } else {
-          // Server may not support HEAD request. Fallback to a GET request.
-          if (method === "HEAD") {
-            makeRequest("GET", url);
+          if (status >= 200 && status < 300) {
+            callback(request);
           } else {
-            if (_isCacheRunning) {
+            // Server may not support HEAD request. Fallback to a GET request.
+            if (method === "HEAD") {
+              makeRequest("GET", url);
+            } else {
               callback(request, new Error("The request failed with status code: " + status));
-            } else{
-              // This is to avoid throwing an error when there is a cross domain issue
-              callback(request);
             }
           }
-        }
-      });
+        });
 
-      xhr.send();
+        xhr.send();
+      }
+      else {
+        // Rise Cache is not running (preview), skip HEAD request and execute callback immediately
+        callback(request);
+      }
+
     }
 
     if (!_pingReceived) {
       /* jshint validthis: true */
       return this.ping(fileRequest);
     } else {
-      return fileRequest(_isCacheRunning);
+      return fileRequest();
     }
 
   }
@@ -418,7 +420,8 @@ RiseVision.Common.Utilities = (function() {
   }
 
   function loadGoogleFont(family, contentDoc) {
-    var stylesheet = document.createElement("link");
+    var stylesheet = document.createElement("link"),
+      familyVal;
 
     contentDoc = contentDoc || document;
 
@@ -426,7 +429,12 @@ RiseVision.Common.Utilities = (function() {
     stylesheet.setAttribute("type", "text/css");
 
     // split to account for family value containing a fallback (eg. Aladin,sans-serif)
-    stylesheet.setAttribute("href", "https://fonts.googleapis.com/css?family=" + family.split(",")[0]);
+    familyVal = family.split(",")[0];
+
+    // strip possible single quotes
+    familyVal = familyVal.replace(/'/g, "");
+
+    stylesheet.setAttribute("href", "https://fonts.googleapis.com/css?family=" + familyVal);
 
     if (stylesheet !== null) {
       contentDoc.getElementsByTagName("head")[0].appendChild(stylesheet);
@@ -459,6 +467,22 @@ RiseVision.Common.Utilities = (function() {
     return "";
   }
 
+  function getRiseCacheErrorMessage(statusCode) {
+    var errorMessage = "";
+    switch (statusCode) {
+      case 404:
+        errorMessage = "The file does not exist or cannot be accessed.";
+        break;
+      case 507:
+        errorMessage = "There is not enough disk space to save the file on Rise Cache.";
+        break;
+      default:
+        errorMessage = "There was a problem retrieving the file from Rise Cache.";
+    }
+
+    return errorMessage;
+  }
+
   return {
     getQueryParameter: getQueryParameter,
     getFontCssStyle:  getFontCssStyle,
@@ -466,7 +490,8 @@ RiseVision.Common.Utilities = (function() {
     loadFonts:        loadFonts,
     loadCustomFont:   loadCustomFont,
     loadGoogleFont:   loadGoogleFont,
-    preloadImages:    preloadImages
+    preloadImages:    preloadImages,
+    getRiseCacheErrorMessage: getRiseCacheErrorMessage
   };
 })();
 

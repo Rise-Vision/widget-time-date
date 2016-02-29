@@ -10048,8 +10048,9 @@ module.run(["$templateCache", function($templateCache) {
           var $element = $(element),
             $customFont = $element.find(".custom-font"),
             $customFontSize = $element.find(".custom-font-size"),
-            _isLoading = true,
-            _googleFontList = "";
+            _isLoading = true;
+
+          $scope.googleFontList = "";
 
           $scope.defaultFont = {
             font: {
@@ -10069,9 +10070,7 @@ module.run(["$templateCache", function($templateCache) {
 
           // Load Google fonts.
           googleFontLoader.getFonts().then(function(fonts) {
-            _googleFontList = fonts;
-
-            initTinyMCE();
+            $scope.googleFontList = fonts;
           });
 
           $scope.customFontSize = null;
@@ -10137,10 +10136,11 @@ module.run(["$templateCache", function($templateCache) {
             return obj;
           };
 
-          var watch = $scope.$watch("fontData", function(fontData) {
+          var watch = $scope.$watchGroup(["fontData","googleFontList"], function(newValues) {
             var family = null;
-
-            if (fontData) {
+            var fontData = newValues[0];
+            var googleFontList = newValues[1];
+            if (fontData && googleFontList) {
               $scope.defaults(fontData, $scope.defaultFont);
 
               // Load custom font.
@@ -10153,6 +10153,7 @@ module.run(["$templateCache", function($templateCache) {
               }
 
               updatePreview(fontData);
+              initTinyMCE();
               watch();
 
               if ($scope.previewText) {
@@ -10171,7 +10172,7 @@ module.run(["$templateCache", function($templateCache) {
           // Initialize TinyMCE.
           function initTinyMCE() {
             $scope.tinymceOptions = {
-              font_formats: "Use Custom Font=custom;" + WIDGET_SETTINGS_UI_CONFIG.families + _googleFontList,
+              font_formats: "Use Custom Font=custom;" + WIDGET_SETTINGS_UI_CONFIG.families + $scope.googleFontList,
               fontsize_formats: "Custom " +
                 (($scope.fontData.customSize !== "") ? $scope.fontData.customSize + " " : "")  +
                 WIDGET_SETTINGS_UI_CONFIG.sizes,
@@ -10255,20 +10256,20 @@ module.run(["$templateCache", function($templateCache) {
               }
 
               // Colors
-              $(".mce-colorbutton[aria-label='Text color'] span").css("background-color", $scope.fontData.forecolor);
-              $(".mce-colorbutton[aria-label='Background color'] span").css("background-color", $scope.fontData.backcolor);
+              $element.find(".mce-colorbutton[aria-label='Text color'] span").css("background-color", $scope.fontData.forecolor);
+              $element.find(".mce-colorbutton[aria-label='Background color'] span").css("background-color", $scope.fontData.backcolor);
 
               // Font Style
               if ($scope.fontData.bold) {
-                toggleButton($(".mce-btn[aria-label='Bold']"));
+                toggleButton($element.find(".mce-btn[aria-label='Bold']"));
               }
 
               if ($scope.fontData.italic) {
-                toggleButton($(".mce-btn[aria-label='Italic']"));
+                toggleButton($element.find(".mce-btn[aria-label='Italic']"));
               }
 
               if ($scope.fontData.underline) {
-                toggleButton($(".mce-btn[aria-label='Underline']"));
+                toggleButton($element.find(".mce-btn[aria-label='Underline']"));
               }
             }
           }
@@ -10334,15 +10335,15 @@ module.run(["$templateCache", function($templateCache) {
               case "mceToggleFormat":
                 if (args.value === "bold") {
                   $scope.fontData.bold = !$scope.fontData.bold;
-                  toggleButton($(".mce-btn[aria-label='Bold']"));
+                  toggleButton($element.find(".mce-btn[aria-label='Bold']"));
                 }
                 else if (args.value === "italic") {
                   $scope.fontData.italic = !$scope.fontData.italic;
-                  toggleButton($(".mce-btn[aria-label='Italic']"));
+                  toggleButton($element.find(".mce-btn[aria-label='Italic']"));
                 }
                 else if (args.value === "underline") {
                   $scope.fontData.underline = !$scope.fontData.underline;
-                  toggleButton($(".mce-btn[aria-label='Underline']"));
+                  toggleButton($element.find(".mce-btn[aria-label='Underline']"));
                 }
 
                 break;
@@ -10359,18 +10360,18 @@ module.run(["$templateCache", function($templateCache) {
 
           // Style the preview text.
           function updatePreview(fontData) {
-            var textContainer = document.querySelector(".text-container"),
-              text = document.querySelector(".text");
+            var $textContainer = $element.find(".text-container"),
+              $text = $element.find(".text");
 
             if ($scope.previewText && fontData) {
-              text.style.fontFamily = fontData.font.family;
-              text.style.fontSize = fontData.size;
-              text.style.fontWeight = fontData.bold ? "bold" : "normal";
-              text.style.fontStyle = fontData.italic ? "italic" : "normal";
-              text.style.textDecoration = fontData.underline ? "underline" : "none";
-              text.style.color = fontData.forecolor;
-              text.style.backgroundColor = fontData.backcolor;
-              textContainer.style.textAlign = fontData.align;
+              $text.css("fontFamily", fontData.font.family);
+              $text.css("fontSize", fontData.size);
+              $text.css("fontWeight", fontData.bold ? "bold" : "normal");
+              $text.css("fontStyle", fontData.italic ? "italic" : "normal");
+              $text.css("textDecoration", fontData.underline ? "underline" : "none");
+              $text.css("color", fontData.forecolor);
+              $text.css("backgroundColor", fontData.backcolor);
+              $textContainer.css("textAlign", fontData.align);
             }
           }
 
@@ -10380,7 +10381,7 @@ module.run(["$templateCache", function($templateCache) {
               return "standard";
             }
 
-            if (_googleFontList.indexOf(family) !== -1) {
+            if ($scope.googleFontList.indexOf(family) !== -1) {
               return "google";
             }
 
@@ -10423,13 +10424,12 @@ module.run(["$templateCache", function($templateCache) {
       fontBaseUrl = "//fonts.googleapis.com/css?family=",
       exclude = ["Buda", "Coda Caption", "Open Sans Condensed", "UnifrakturCook", "Molle"],
       fallback = ",sans-serif;",
-      fonts = "",
       factory = {};
 
     factory.getFonts = function() {
       return $http.get(fontsApi, { cache: true })
         .then(function(response) {
-          var family = "";
+          var family = "", fonts = "", spaces = false;
 
           if (response.data && response.data.items) {
             for (var i = 0; i < response.data.items.length; i++) {
@@ -10440,7 +10440,19 @@ module.run(["$templateCache", function($templateCache) {
                   // Font loaded.
                 });
 
-                fonts += family + "=" + family + fallback;
+                // check for spaces in family name
+                if (/\s/.test(family)) {
+                  spaces = true;
+                }
+
+                if (spaces) {
+                  // wrap family name in single quotes
+                  fonts += family + "='" + family + "'" + fallback;
+                }
+                else {
+                  fonts += family + "=" + family + fallback;
+                }
+
               }
             }
           }
