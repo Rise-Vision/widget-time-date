@@ -11191,319 +11191,7 @@ var WIDGET_SETTINGS_UI_CONFIG = {
       "Terminal=terminal,monaco,monospace;" +
       "Times New Roman=times new roman,times,serif;" +
       "Trebuchet MS=trebuchet ms,geneva,sans-serif;" +
-      "Verdana=verdana,geneva,sans-serif;" +
-      "Webdings=webdings;" +
-      "Wingdings=wingdings,zapf dingbats;",
-  "sizes": "8px 9px 10px 11px 12px 14px 18px 24px 30px 36px 48px 60px 72px 96px"
-};
-
-if(typeof TEMPLATES === 'undefined') {var TEMPLATES = {};}
-TEMPLATES['font-style.html'] = "<div class=\"btn-group\">\n" +
-    "  <a class=\"btn btn-sm btn-default bold\" data-wysihtml5-command=\"bold\" title=\"CTRL+B\" tabindex=\"-1\">B</a>\n" +
-    "  <a class=\"btn btn-sm btn-default italic\" data-wysihtml5-command=\"italic\" title=\"CTRL+I\" tabindex=\"-1\">I</a>\n" +
-    "  <a class=\"btn btn-sm btn-default underline\" data-wysihtml5-command=\"underline\" title=\"CTRL+U\" tabindex=\"-1\">U</a>\n" +
-    "</div>\n" +
-    ""; 
-/*  Copyright © 2014 Rise Vision Incorporated.
- *  Use of this software is governed by the GPLv3 license
- *  (reproduced in the LICENSE file).
- */
-
-/* global TEMPLATES */
-;(function ($, window, document, TEMPLATES, undefined) {
-  "use strict";
-
-  var _pluginName = "fontStyle";
-
-  function Plugin(element, options) {
-    var $element = $(element);
-    var $bold = null;
-    var $italic = null;
-    var $underline = null;
-    var defaults = {
-      "bold":      false,
-      "italic":    false,
-      "underline": false,
-    };
-
-    options = $.extend({}, defaults, options);
-
-    /*
-     *  Private Methods
-     */
-    function _init() {
-      // Get the HTML markup from the template.
-      $element.append(TEMPLATES["font-style.html"]);
-
-      $bold = $element.find(".bold");
-      $italic = $element.find(".italic");
-      $underline = $element.find(".underline");
-
-      // Initialize all styles.
-      setStyles({
-        "bold": options.bold,
-        "italic": options.italic,
-        "underline": options.underline,
-      });
-
-      // Handle clicking on any of the style buttons.
-      $element.find(".btn").on("click", function() {
-        var value = !$(this).hasClass("active");
-        _setStyle($(this), value);
-
-        $element.trigger("styleChanged",
-          [$(this).attr("data-wysihtml5-command"), value]);
-      });
-    }
-
-    function _getStyle($styleElem) {
-      return $styleElem.hasClass("active");
-    }
-
-    function _setStyle($styleElem, value) {
-      if (value) {
-        $styleElem.addClass("active");
-      }
-      else {
-        $styleElem.removeClass("active");
-      }
-    }
-
-    /*
-     *  Public Methods
-     */
-    function isBold() {
-      return _getStyle($bold);
-    }
-
-    function setBold(value) {
-      _setStyle($bold, value);
-    }
-
-    function isItalic() {
-     return _getStyle($italic);
-    }
-
-    function setItalic(value) {
-      _setStyle($italic, value);
-    }
-
-    function isUnderline() {
-     return _getStyle($underline);
-    }
-
-    function setUnderline(value) {
-      _setStyle($underline, value);
-    }
-
-    function getStyles() {
-      return  {
-        "bold": isBold(),
-        "italic": isItalic(),
-        "underline": isUnderline(),
-      };
-    }
-
-    function setStyles(styles) {
-      _setStyle($bold, styles.bold);
-      _setStyle($italic, styles.italic);
-      _setStyle($underline, styles.underline);
-    }
-
-    function reset() {
-      setStyles(defaults);
-    }
-
-    _init();
-
-    return {
-      isBold:         isBold,
-      isItalic:       isItalic,
-      isUnderline:    isUnderline,
-      setBold:        setBold,
-      setItalic:      setItalic,
-      setUnderline:   setUnderline,
-      getStyles:      getStyles,
-      setStyles:      setStyles,
-      reset:          reset
-    };
-  }
-
-  /*
-   *  A lightweight plugin wrapper around the constructor that prevents
-   *  multiple instantiations.
-   */
-  $.fn.fontStyle = function(options) {
-    return this.each(function() {
-      if (!$.data(this, "plugin_" + _pluginName)) {
-        $.data(this, "plugin_" + _pluginName, new Plugin(this, options));
-      }
-    });
-  };
-})(jQuery, window, document, TEMPLATES);
-
-/* exported WIDGET_SETTINGS_UI_CONFIG */
-var WIDGET_SETTINGS_UI_CONFIG = {
-  "families": "Andale Mono=andale mono,monospace;" +
-      "Arial=arial,helvetica,sans-serif;" +
-      "Arial Black=arial black,sans-serif;" +
-      "Book Antiqua=book antiqua,palatino,serif;" +
-      "Comic Sans MS=comic sans ms,sans-serif;" +
-      "Courier New=courier new,courier,monospace;" +
-      "Georgia=georgia,palatino,serif;" +
-      "Helvetica=helvetica,arial,sans-serif;" +
-      "Impact=impact,sans-serif;" +
-      "Symbol=symbol;" +
-      "Tahoma=tahoma,arial,helvetica,sans-serif;" +
-      "Terminal=terminal,monaco,monospace;" +
-      "Times New Roman=times new roman,times,serif;" +
-      "Trebuchet MS=trebuchet ms,geneva,sans-serif;" +
-      "Verdana=verdana,geneva,sans-serif;" +
-      "Webdings=webdings;" +
-      "Wingdings=wingdings,zapf dingbats;",
-  "sizes": "8px 9px 10px 11px 12px 14px 18px 24px 30px 36px 48px 60px 72px 96px"
-};
-
-if(typeof TEMPLATES === 'undefined') {var TEMPLATES = {};}
-TEMPLATES['url-field-template.html'] = "<div class=\"form-group validate-url\">\n" +
-    "  <div class=\"checkbox\">\n" +
-    "    <label>\n" +
-    "      <input name=\"validate-url\" type=\"checkbox\" value=\"validate-url\" checked=\"checked\"> Validate URL\n" +
-    "    </label>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "<div class=\"form-group\">\n" +
-    "  <label>URL</label>\n" +
-    "  <input name=\"url\" type=\"text\" class=\"form-control\" />\n" +
-    "</div>\n" +
-    ""; 
-/*  Copyright © 2014 Rise Vision Incorporated.
- *  Use of this software is governed by the GPLv3 license
- *  (reproduced in the LICENSE file).
- */
-
-/* global TEMPLATES */
-/* jshint maxlen: 500 */
-;(function ($, window, document, TEMPLATES, undefined) {
-  "use strict";
-
-  var _pluginName = "urlField";
-
-  function Plugin(element, options) {
-    var $element = $(element),
-      $urlInp = null,
-      $validateUrlCtn = null,
-      $validateUrlCB = null,
-      urlRegExp = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/i,
-      doValidation = true;
-
-    options = $.extend({}, { "url": "http://" }, options);
-
-    function _getUrl() {
-      return $.trim($urlInp.val());
-    }
-
-    function _testUrl(value) {
-      // Add http:// if no protocol parameter exists
-      if (value.indexOf("://") === -1) {
-        value = "http://" + value;
-      }
-      /*
-       Discussion
-       http://stackoverflow.com/questions/37684/how-to-replace-plain-urls-
-       with-links#21925491
-
-       Using
-       https://gist.github.com/dperini/729294
-       Reasoning
-       http://mathiasbynens.be/demo/url-regex
-
-       */
-
-      return urlRegExp.test(value);
-    }
-
-    function _setUrl(value) {
-      if (typeof value === "string") {
-        if ($urlInp) {
-          $urlInp.val(value);
-        }
-      }
-    }
-
-    function _validateUrl() {
-      if (!doValidation) {
-        return true;
-      }
-
-      var valid = _testUrl(_getUrl());
-      if (!valid) {
-        if (!$validateUrlCtn.is(":visible")) {
-          $validateUrlCtn.show();
-        }
-      }
-
-      return valid;
-    }
-
-    function _init() {
-      // Get the HTML markup from the template.
-      $element.append(TEMPLATES["url-field-template.html"]);
-
-      $urlInp = $element.find("input[name='url']");
-      $validateUrlCtn = $element.find("div.validate-url");
-      $validateUrlCB = $element.find("input[name='validate-url']");
-
-      $validateUrlCtn.hide();
-
-      _setUrl(options.url);
-
-      $validateUrlCB.on("click", function () {
-        doValidation = $(this).is(":checked");
-      });
-    }
-
-    _init();
-
-    return {
-      setUrl: _setUrl,
-      getUrl: _getUrl,
-      validateUrl: _validateUrl
-    };
-  }
-
-  /*
-   *  A lightweight plugin wrapper around the constructor that prevents
-   *  multiple instantiations.
-   */
-  $.fn.urlField = function (options) {
-    return this.each(function () {
-      if (!$.data(this, "plugin_" + _pluginName)) {
-        $.data(this, "plugin_" + _pluginName, new Plugin(this, options));
-      }
-    });
-  };
-})(jQuery, window, document, TEMPLATES);
-
-/* exported WIDGET_SETTINGS_UI_CONFIG */
-var WIDGET_SETTINGS_UI_CONFIG = {
-  "families": "Andale Mono=andale mono,monospace;" +
-      "Arial=arial,helvetica,sans-serif;" +
-      "Arial Black=arial black,sans-serif;" +
-      "Book Antiqua=book antiqua,palatino,serif;" +
-      "Comic Sans MS=comic sans ms,sans-serif;" +
-      "Courier New=courier new,courier,monospace;" +
-      "Georgia=georgia,palatino,serif;" +
-      "Helvetica=helvetica,arial,sans-serif;" +
-      "Impact=impact,sans-serif;" +
-      "Symbol=symbol;" +
-      "Tahoma=tahoma,arial,helvetica,sans-serif;" +
-      "Terminal=terminal,monaco,monospace;" +
-      "Times New Roman=times new roman,times,serif;" +
-      "Trebuchet MS=trebuchet ms,geneva,sans-serif;" +
-      "Verdana=verdana,geneva,sans-serif;" +
-      "Webdings=webdings;" +
-      "Wingdings=wingdings,zapf dingbats;",
+      "Verdana=verdana,geneva,sans-serif;",
   "sizes": "8px 9px 10px 11px 12px 14px 18px 24px 30px 36px 48px 60px 72px 96px"
 };
 
@@ -11708,7 +11396,8 @@ module.run(["$templateCache", function($templateCache) {
         restrict: "AE",
         scope: {
           fontData: "=",
-          previewText: "@"
+          previewText: "@",
+          verticalAlign: "@"
         },
         template: $templateCache.get("_angular/font-setting/font-setting.html"),
         transclude: false,
@@ -11729,6 +11418,7 @@ module.run(["$templateCache", function($templateCache) {
             size: "24px",
             customSize: "",
             align: "left",
+            verticalAlign: "middle",
             bold: false,
             italic: false,
             underline: false,
@@ -11852,8 +11542,14 @@ module.run(["$templateCache", function($templateCache) {
                */
               skin_url: "//s3.amazonaws.com/rise-common/styles/tinymce/rise",
               statusbar: false,
-              toolbar: "fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | forecolor backcolor | bold italic underline",
+              toolbar: "fontselect fontsizeselect | alignleft aligncenter alignright alignjustify" +
+              ($scope.verticalAlign ? " aligntop alignmiddle alignbottom" : "") +
+              " | forecolor backcolor | bold italic underline",
               setup: function(editor) {
+                if ($scope.verticalAlign) {
+                  addVerticalAlignButtons(editor);
+                }
+
                 editor.on("init", function() {
                   initToolbar(editor);
                   _isLoading = false;
@@ -11923,6 +11619,11 @@ module.run(["$templateCache", function($templateCache) {
                   break;
               }
 
+              // Vertical Alignment
+              if ($scope.verticalAlign) {
+                editor.execCommand("mceToggleVertical", false, $scope.fontData.verticalAlign);
+              }
+
               // Colors
               $element.find(".mce-colorbutton[aria-label='Text color'] span").css("background-color", $scope.fontData.forecolor);
               $element.find(".mce-colorbutton[aria-label='Background color'] span").css("background-color", $scope.fontData.backcolor);
@@ -11990,6 +11691,20 @@ module.run(["$templateCache", function($templateCache) {
 
               case "JustifyFull":
                 $scope.fontData.align = "justify";
+                break;
+
+              case "mceToggleVertical":
+                if (args.value) {
+                  toggleVerticalButtons(args.value);
+                  if ($scope.fontData.verticalAlign !== args.value) {
+                    toggleVerticalButtons($scope.fontData.verticalAlign);
+                  }
+                } else {
+                  toggleVerticalButtons($scope.defaultFont.verticalAlign);
+                }
+
+                $scope.fontData.verticalAlign = (args.value) ? args.value : $scope.defaultFont.verticalAlign;
+
                 break;
 
               case "forecolor":
@@ -12077,6 +11792,51 @@ module.run(["$templateCache", function($templateCache) {
               sheet.addRule("@font-face", rule);
             }
           }
+
+          function addVerticalAlignButtons(editor) {
+            editor.addButton("aligntop", {
+              image: "//s3.amazonaws.com/Rise-Images/Icons/align-top.svg",
+              tooltip: "Align Top",
+              onclick: function () {
+                editor.execCommand("mceToggleVertical", false, "top");
+              }
+            });
+
+            editor.addButton("alignmiddle", {
+              image: "//s3.amazonaws.com/Rise-Images/Icons/align-vertical-middle.svg",
+              tooltip: "Align Middle",
+              onclick: function () {
+                editor.execCommand("mceToggleVertical", false, "middle");
+              }
+            });
+
+            editor.addButton("alignbottom", {
+              image: "//s3.amazonaws.com/Rise-Images/Icons/align-bottom.svg",
+              tooltip: "Align Bottom",
+              onclick: function () {
+                editor.execCommand("mceToggleVertical", false, "bottom");
+              }
+            });
+
+            editor.addCommand("mceToggleVertical", function () {});
+
+          }
+
+          function toggleVerticalButtons(value) {
+            switch(value) {
+              case "top":
+                toggleButton($element.find(".mce-btn[aria-label='Align Top']"));
+                break;
+              case "middle":
+                toggleButton($element.find(".mce-btn[aria-label='Align Middle']"));
+                break;
+              case "bottom":
+                toggleButton($element.find(".mce-btn[aria-label='Align Bottom']"));
+                break;
+              default:
+                break;
+            }
+          }
         }
       };
     }]);
@@ -12142,7 +11902,9 @@ module.run(["$templateCache", function($templateCache) {
     "<div class=\"font-setting\">\n" +
     "  <div class=\"row\">\n" +
     "    <div class=\"col-md-12\">\n" +
-    "      <textarea ui-tinymce=\"tinymceOptions\" ng-model=\"tinymceModel\" ng-if=\"tinymceOptions\"></textarea>\n" +
+    "      <div ng-class=\"{'form-group': !previewText}\">\n" +
+    "        <textarea ui-tinymce=\"tinymceOptions\" ng-model=\"tinymceModel\" ng-if=\"tinymceOptions\"></textarea>\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "  <div class=\"row\" ng-if=\"previewText\">\n" +

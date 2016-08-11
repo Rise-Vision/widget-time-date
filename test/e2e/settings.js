@@ -83,11 +83,13 @@
             "size": "24px",
             "customSize": "",
             "align": "left",
+            "verticalAlign": "middle",
             "bold": false,
             "italic": false,
             "underline": false,
             "forecolor": "black",
             "backcolor": "transparent"
+
           }
         }
       };
@@ -119,6 +121,7 @@
             "size": "24px",
             "customSize": "",
             "align": "left",
+            "verticalAlign": "middle",
             "bold": false,
             "italic": false,
             "underline": false,
@@ -157,6 +160,7 @@
             "size": "24px",
             "customSize": "",
             "align": "left",
+            "verticalAlign": "middle",
             "bold": false,
             "italic": false,
             "underline": false,
