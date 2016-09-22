@@ -24,7 +24,7 @@ RiseVision.TimeDate = (function (gadgets) {
     var fontSettings = [
       {
         "class": "time-and-date",
-        "fontSetting": _additionalParams.fontStyle
+        "fontStyle": _additionalParams.fontStyle
       }
     ];
 
