@@ -82,7 +82,7 @@ RiseVision.Common.LoggerUtils = (function() {
       day = "0" + day;
     }
 
-    return year + month + day;
+    return "" + year + month + day;
   }
 
   /*
@@ -373,6 +373,28 @@ RiseVision.Common.RiseCache = (function () {
 
   }
 
+  function getErrorMessage(statusCode) {
+    var errorMessage = "";
+    switch (statusCode) {
+      case 502:
+        errorMessage = "There was a problem retrieving the file.";
+        break;
+      case 504:
+        errorMessage = "Unable to download the file. The server is not responding.";
+        break;
+      case 507:
+        errorMessage = "There is not enough disk space to save the file on Rise Cache.";
+        break;
+      case 534:
+        errorMessage = "The file does not exist or cannot be accessed.";
+        break;
+      default:
+        errorMessage = "";
+    }
+
+    return errorMessage;
+  }
+
   function isRiseCacheRunning(callback) {
     if (!callback || typeof callback !== "function") {
       return;
@@ -405,6 +427,7 @@ RiseVision.Common.RiseCache = (function () {
   }
 
   return {
+    getErrorMessage: getErrorMessage,
     getFile: getFile,
     isRiseCacheRunning: isRiseCacheRunning,
     isV2Running: isV2Running,
@@ -662,7 +685,18 @@ RiseVision.Common.Utilities = (function() {
     return false;
   }
 
+  /**
+   * Adds http:// or https:// protocol to url if the protocol is missing
+   */
+  function addProtocol(url, secure) {
+    if (!/^(?:f|ht)tps?\:\/\//.test(url)) {
+      url = ((secure) ? "https://" : "http://") + url;
+    }
+    return url;
+  }
+
   return {
+    addProtocol: addProtocol,
     getQueryParameter: getQueryParameter,
     getFontCssStyle:  getFontCssStyle,
     addCSSRules:      addCSSRules,
