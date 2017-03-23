@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "gulp test",
-    "build": "gulp build"
+    "build": "gulp build && ./include-deps.sh"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,6 @@
     "phantomjs": "^1.9.16",
     "run-sequence": "^0.3.2",
     "web-component-tester": "*",
-    "widget-tester": "git://github.com/Rise-Vision/widget-tester.git#1.6.4"
+    "widget-tester": "git://github.com/Rise-Vision/widget-tester.git#1.7.2"
   }
 }
