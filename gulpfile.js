@@ -30,10 +30,10 @@
       "./src/widget.html"
     ],
     vendorFiles = [
-      "./src/components/tinymce-dist/plugins/**/*",
-      "./src/components/tinymce-dist/skins/**/*",
-      "./src/components/tinymce-dist/themes/**/*",
-      "./src/components/tinymce-dist/tinymce*.js",
+      "./src/components/tinymce/plugins/**/*",
+      "./src/components/tinymce/skins/**/*",
+      "./src/components/tinymce/themes/**/*",
+      "./src/components/tinymce/tinymce*.js",
       "./src/components/angular/angular*.js",
       "./src/components/angular/*.gzip",
       "./src/components/angular/*.map",
@@ -119,7 +119,8 @@
 // ***** e2e Testing ***** //
 
   gulp.task("html:e2e:settings", factory.htmlE2E({
-    e2emomenttimezone: "components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"
+    e2emomenttimezone: "components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js",
+    e2eTinymce: "components/tinymce/tinymce.js"
   }));
 
   gulp.task("e2e:server:settings", ["config", "html:e2e:settings"], factory.testServer());
