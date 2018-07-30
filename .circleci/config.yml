@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/Rise-Vision/widget-time-date
     shell: /bin/bash --login
     docker: &BUILDIMAGE
-      - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      - image: jenkinsrise/cci-v2-transitional-widgets:0.0.1
         command: /sbin/init
     steps:
       - checkout
@@ -30,8 +30,6 @@ jobs:
       - checkout
       - restore_cache:
           key: node-cache-{{ checksum "package.json" }}
-      - run: nvm install 6.9.1 && nvm alias default 6.9.1
-      - run: npm install -g gulp bower
       - run: npm install
       - run: bower install
       - save_cache:
@@ -57,23 +55,6 @@ jobs:
           paths:
             - gcloud
 
-  aws-setup:
-    docker: *BUILDIMAGE
-    steps:
-      - restore_cache:
-          key: aws-cache2
-      - run: |
-          if [[ ! -d /home/ubuntu/aws ]]
-          then
-            sudo apt-get update
-            sudo apt-get install python-dev
-            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" && unzip awscli-bundle.zip && sudo ./awscli-bundle/install -i /home/ubuntu/aws
-          fi
-      - save_cache:
-          key: aws-cache2
-          paths:
-            - /home/ubuntu/aws
-
   test:
     working_directory: ~/Rise-Vision/widget-time-date
     shell: /bin/bash --login
@@ -84,12 +65,6 @@ jobs:
           at: .
       - restore_cache:
           key: node-cache-{{ checksum "package.json" }}
-      # latest stable chrome
-      - run: curl -L -o google-chrome-stable.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      - run: sudo dpkg -i google-chrome-stable.deb
-      # make chrome lxc-friendly
-      - run: sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
-      - run: nvm install 6.9.1 && nvm alias default 6.9.1
       - run: NODE_ENV=dev npm run test
 
   build:
@@ -102,7 +77,6 @@ jobs:
           at: .
       - restore_cache:
           key: node-cache-{{ checksum "package.json" }}
-      - run: nvm install 6.9.1 && nvm alias default 6.9.1
       - run: |
           if [ "${CIRCLE_BRANCH}" != "master" ]; then
             NODE_ENV=test npm run build
@@ -126,8 +100,6 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - restore_cache:
-          key: aws-cache2
       - run: |
           STAGE_ENV="$(git log -1 --pretty=%B | grep '\[.*\]' |sed -e 's/.*\[\(.*\)\].*/\1/g')"
           if [ "$STAGE_ENV" != '' ]
@@ -143,8 +115,6 @@ jobs:
 
   stage-aws-prod:
     shell: /bin/bash --login
-    environment:
-      awscli: /home/ubuntu/aws/bin/aws
     docker: *BUILDIMAGE
     steps:
       - checkout
@@ -217,9 +187,6 @@ workflows:
       - setup:
           requires:
             - preconditions
-      - aws-setup:
-          requires:
-            - preconditions
       - gcloud-setup:
           requires:
             - preconditions
@@ -236,7 +203,6 @@ workflows:
       - stage-aws-dev:
           requires:
             - build
-            - aws-setup
           filters:
             branches:
               only:
@@ -244,7 +210,6 @@ workflows:
       - stage-aws-prod:
           requires:
             - build
-            - aws-setup
           filters:
             branches:
               only:
@@ -252,7 +217,6 @@ workflows:
       - deploy-aws-stable:
           requires:
             - build
-            - aws-setup
           filters:
             branches:
               only:
