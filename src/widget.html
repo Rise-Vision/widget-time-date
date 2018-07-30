@@ -14,26 +14,36 @@
 
 <body>
 
-<div id="container"></div>
+  <div id="container"></div>
 
-<div id="messageContainer"></div>
+  <div id="messageContainer"></div>
 
-<!-- build:e2egadgets -->
-<script src="gadgets/gadgets.min.js"></script>
-<!-- endbuild -->
+  <script>
+    if (document.domain.indexOf("localhost") === -1) {
+      try {
+        document.domain = "risevision.com";
+      } catch (err) {
+        // can't set document.domain, risevision.com not an accepted suffix of current document domain
+      }
+    }
+  </script>
 
-<!-- build:js js/widget.min.js -->
-<script src="components/webfontloader/webfontloader.js"></script>
-<script src="components/widget-common/dist/config.js"></script>
-<script src="components/widget-common/dist/logger.js"></script>
-<script src="components/widget-common/dist/rise-cache.js"></script>
-<script src="components/widget-common/dist/common.js"></script>
-<script src="components/moment/moment.js"></script>
-<script src="components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
-<script src="config/config.js"></script>
-<script src="widget/time-date.js"></script>
-<script src="components/widget-common/dist/message.js"></script>
-<script src="widget/main.js"></script>
-<!-- endbuild -->
+  <!-- build:e2egadgets -->
+  <script src="gadgets/gadgets.min.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js js/widget.min.js -->
+  <script src="components/webfontloader/webfontloader.js"></script>
+  <script src="components/widget-common/dist/config.js"></script>
+  <script src="components/widget-common/dist/logger.js"></script>
+  <script src="components/widget-common/dist/rise-cache.js"></script>
+  <script src="components/widget-common/dist/common.js"></script>
+  <script src="components/moment/moment.js"></script>
+  <script src="components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+  <script src="config/config.js"></script>
+  <script src="widget/time-date.js"></script>
+  <script src="components/widget-common/dist/message.js"></script>
+  <script src="widget/main.js"></script>
+  <!-- endbuild -->
 </body>
 </html>
