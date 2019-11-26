@@ -15,7 +15,7 @@
         "font": {
           "family": "BrushScriptStd",
           "type": "custom",
-          "url": "https://my.custom.font/BrushScriptStd.otf",
+          "url": "https://storage.googleapis.com/widgets.risevision.com/test/font.otf",
         },
         "size": "24px",
         "customSize": "",
