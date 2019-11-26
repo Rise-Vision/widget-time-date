@@ -187,7 +187,7 @@
   });
 
   gulp.task("test", function(cb) {
-    runSequence("test:unit", "test:e2e", cb);
+    runSequence("test:unit", "test:e2e", "test:integration", cb);
   });
 
   gulp.task("bower-update", function (cb) {
