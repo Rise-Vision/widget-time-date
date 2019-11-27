@@ -13,9 +13,9 @@
       "timezone": "",
       "fontStyle":{
         "font": {
-          "family": "FontAwesome",
+          "family": "BrushScriptStd",
           "type": "custom",
-          "url": "http://widgets.risevision.com/test/fontawesome-webfont.woff",
+          "url": "http://widgets.risevision.com/test/BrushScriptStd.otf",
         },
         "size": "24px",
         "customSize": "",
