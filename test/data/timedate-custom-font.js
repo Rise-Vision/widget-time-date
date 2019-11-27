@@ -15,7 +15,7 @@
         "font": {
           "family": "BrushScriptStd",
           "type": "custom",
-          "url": "http://www.wfonts.com/download/data/2014/12/29/brush-script-std/BrushScriptStd.otf",
+          "url": "http://widgets.risevision.com/test/BrushScriptStd.otf",
         },
         "size": "24px",
         "customSize": "",
