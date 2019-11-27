@@ -13,7 +13,7 @@
       "timezone": "",
       "fontStyle":{
         "font": {
-          "family": "BrushScriptStd",
+          "family": "FontAwesome",
           "type": "custom",
           "url": "http://widgets.risevision.com/test/fontawesome-webfont.woff",
         },
