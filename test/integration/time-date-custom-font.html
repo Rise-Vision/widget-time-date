@@ -34,8 +34,8 @@
     suite("Custom Font", function () {
       test("should load the custom font", function() {
         // This may fail locally but will run on CCI because CCI expects quotes around the URL.
-        assert.equal(document.styleSheets[0].cssRules[0].cssText, '@font-face { font-family: BrushScriptStd; src: url("https://my.custom.font/BrushScriptStd.otf"); }');
-        // assert.equal(document.styleSheets[0].cssRules[0].cssText, '@font-face { font-family: BrushScriptStd; src: url(https://my.custom.font/BrushScriptStd.otf); }');
+        assert.equal(document.styleSheets[0].cssRules[0].cssText, '@font-face { font-family: BrushScriptStd; src: url("https://widgets.risevision.com/test/BrushScriptStd.otf"); }');
+        // assert.equal(document.styleSheets[0].cssRules[0].cssText, '@font-face { font-family: BrushScriptStd; src: url(https://widgets.risevision.com/test/BrushScriptStd.otf); }');
       });
 
       test("should add a CSS class called time-and-date", function() {
