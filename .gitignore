@@ -5,5 +5,5 @@ src/components/
 src/config/config.js
 src/*-e2e.html
 dist
-
+.project
 
