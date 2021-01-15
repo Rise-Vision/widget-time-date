@@ -45,26 +45,29 @@ describe("logEvent", function() {
     expect(logSpy).to.have.been.calledWith("time_date_events", params);
   });
 
-  it("should call spy with correct configuration and play event parameters when play is called", function() {
-
-    var configurationParams = {
-      "event": "configuration",
-      "event_details": "null",
+  it("should call spy with correct parameters when endpoint logging is included", function() {
+    var params = {
+      "event": "test",
+      "event_details": "test details",
       "company_id": "",
       "display_id": ""
-    };
+    },
+      event = {
+        "event": "test",
+        "event_details": "test details"
+      },
+      endpointParams = {
+        eventApp: "widget-time-date",
+        severity: "info",
+        debugInfo: JSON.stringify( event )
+      };
 
-    var playParams = {
-      "event": "play",
-      "event_details": undefined,
-      "company_id": "",
-      "display_id": ""
-    };
+    RiseVision.TimeDate.logEvent(event, {
+      severity: "info",
+      debugInfo: JSON.stringify( event )
+    });
 
-    RiseVision.TimeDate.play();
-
-    expect(logSpy).to.have.been.calledWith("time_date_events", configurationParams);
-    expect(logSpy).to.have.been.calledWith("time_date_events", playParams);
+    expect(logSpy).to.have.been.calledWith("time_date_events", params, endpointParams);
   });
 
 });
