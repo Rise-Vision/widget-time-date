@@ -4,7 +4,7 @@
   "description": "Rise Vision Time and Date Widget",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "gulp test:unit",
+    "test": "gulp test",
     "build": "gulp build && ./include-deps.sh"
   },
   "repository": {
@@ -38,10 +38,11 @@
     "hoek": "5.0.3",
     "jshint-stylish": "^2.1.0",
     "phantomjs": "^1.9.16",
+    "promisify-node": "^0.5.0",
     "run-sequence": "^0.3.2",
     "uglify-js": "^2.6.0",
     "web-component-tester": "5.0.0",
-    "widget-tester": "git://github.com/Rise-Vision/widget-tester.git#1.7.3"
+    "widget-tester": "git://github.com/Rise-Vision/widget-tester.git#v1.13.0"
   },
   "optionalDependencies": {
     "wct-local": "<2.0.16"
