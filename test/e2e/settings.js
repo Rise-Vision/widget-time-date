@@ -25,7 +25,7 @@
     });
 
     it("Should load Font Setting component", function () {
-      expect(element(by.css("#time-date-font .mce-tinymce")).isPresent()).to.eventually.be.true;
+      expect(element(by.css("#time-date-font .font-setting")).isPresent()).to.eventually.be.true;
     });
 
     it("Should select Show Time", function () {
