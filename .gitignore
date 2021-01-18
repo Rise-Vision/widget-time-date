@@ -3,6 +3,7 @@ node_modules/
 reports/
 src/components/
 src/config/config.js
+src/config/version.js
 src/*-e2e.html
 dist
 .project

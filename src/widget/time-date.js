@@ -95,13 +95,16 @@ RiseVision.TimeDate = (function (gadgets) {
   function play() {
 
     if (!_configurationLogged) {
-      logEvent({ "event": "configuration", "event_details": JSON.stringify(_additionalParams)});
+      var configParams = {
+        "event": "configuration",
+        "event_details": JSON.stringify(_additionalParams)
+      };
+
+      logEvent( configParams, { severity: "info", debugInfo: JSON.stringify( configParams ) } );
       _configurationLogged = true;
     }
 
     _draw();
-
-    logEvent({ "event": "play", "event_details": _format });
   }
 
   function stop() {
@@ -112,8 +115,12 @@ RiseVision.TimeDate = (function (gadgets) {
     return "time_date_events";
   }
 
-  function logEvent(params) {
-    RiseVision.Common.LoggerUtils.logEvent(getTableName(), params);
+  function logEvent(params, endpointLoggingFields) {
+    if ( endpointLoggingFields ) {
+      endpointLoggingFields.eventApp = "widget-time-date";
+    }
+
+    RiseVision.Common.LoggerUtils.logEvent(getTableName(), params, endpointLoggingFields);
   }
 
   return {

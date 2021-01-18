@@ -7,6 +7,7 @@
   var bump = require("gulp-bump");
   var del = require("del");
   var factory = require("widget-tester").gulpTaskFactory;
+  var file = require("gulp-file");
   var gulp = require("gulp");
   var gulpif = require("gulp-if");
   var gutil = require("gulp-util");
@@ -69,6 +70,15 @@
       .pipe(jshint())
       .pipe(jshint.reporter("jshint-stylish"))
       .pipe(jshint.reporter("fail"));
+  });
+
+  gulp.task("version", function () {
+    var pkg = require("./package.json"),
+      str = '/* exported version */\n' +
+        'var version = "' + pkg.version + '";';
+
+    return file("version.js", str, {src: true})
+      .pipe(gulp.dest("./src/config/"));
   });
 
   gulp.task("source", ["lint"], function () {
@@ -165,6 +175,7 @@
       "src/components/bootstrap-form-components/dist/js/**/*.js",
       "src/components/moment/moment.js",
       "src/components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js",
+      "src/config/version.js",
       "src/config/test.js",
       "src/settings/settings-app.js",
       "src/settings/**/*.js",
@@ -187,7 +198,7 @@
   });
 
   gulp.task("test", function(cb) {
-    runSequence("test:unit", "test:e2e", "test:integration", cb);
+    runSequence("version", "test:unit", "test:e2e", "test:integration", cb);
   });
 
   gulp.task("bower-update", function (cb) {
@@ -198,7 +209,7 @@
   });
 
   gulp.task("build", function (cb) {
-    runSequence(["clean", "config", "bower-update"], ["source", "fonts", "i18n", "vendor"], ["unminify"], cb);
+    runSequence(["clean", "config", "bower-update", "version"], ["source", "fonts", "i18n", "vendor"], ["unminify"], cb);
   });
 
   gulp.task("default", function(cb) {
