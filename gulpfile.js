@@ -129,7 +129,7 @@
 // ***** e2e Testing ***** //
 
   gulp.task("html:e2e:settings", factory.htmlE2E({
-    e2emomenttimezone: "components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js",
+    e2emomenttimezone: "components/moment-timezone/builds/moment-timezone-with-data-10-year-range.js",
     e2eTinymce: "components/tinymce/tinymce.js"
   }));
 
@@ -174,7 +174,7 @@
       "src/components/widget-settings-ui-core/dist/*.js",
       "src/components/bootstrap-form-components/dist/js/**/*.js",
       "src/components/moment/moment.js",
-      "src/components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js",
+      "src/components/moment-timezone/builds/moment-timezone-with-data-10-year-range.js",
       "src/config/version.js",
       "src/config/test.js",
       "src/settings/settings-app.js",
