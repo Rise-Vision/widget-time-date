@@ -31,7 +31,7 @@
     "jquery": "~3.3.1",
     "moment": "2.11.1",
     "moment-timezone": "0.5.33",
-    "widget-common": "https://github.com/Rise-Vision/widget-common.git#v3.13.0",
+    "widget-common": "https://github.com/Rise-Vision/widget-common.git#v3.14.0",
     "widget-settings-ui-components": "https://github.com/Rise-Vision/widget-settings-ui-components.git#3.5.0",
     "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core.git#0.4.2"
   },
